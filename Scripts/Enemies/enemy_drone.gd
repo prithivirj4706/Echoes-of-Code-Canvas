@@ -1,46 +1,41 @@
 ## SentinelDrone
 ##
-## A two-phase flying Digital-World enemy:
+## A two-phase flying Digital-World enemy. It hovers via script (no gravity, no
+## terrain collision) so it never gets stuck on platforms or props.
 ##
-##   Phase 1 — GROUNDED: dormant. It rests on the floor and patrols / drifts
-##   toward the player at ground level, dealing no damage. Easy to engage and
-##   hit with normal melee.
+##   Phase 1 — LOW: a dormant sentinel hovering just above the player's head,
+##   tracking horizontally. Deals no damage. Reachable by a standing/short
+##   attack so it's easy to start the fight.
 ##
-##   Phase 2 — AIRBORNE: once the player has damaged it past `float_trigger`, it
-##   "wakes up", lifts off, hovers above the player and fires energy bolts.
+##   Phase 2 — HIGH: once damaged past `float_trigger` it rises and starts firing
+##   energy bolts. Reachable with a jump-attack.
 ##
-## It reuses the shared combat components (Hurtbox + HealthComponent) so the
-## player's attacks damage it with no special casing, and it flashes, knocks
-## back, and explodes on death.
-##
-## Setup: CharacterBody2D on the "Enemy" layer, collides with World. The player
-## must be in the "player" group (Player adds itself on ready).
+## Reuses Hurtbox + HealthComponent; flashes, squashes, knocks back, explodes.
 extends CharacterBody2D
 
-enum Phase { GROUNDED, AIRBORNE, DEAD }
+enum Phase { LOW, HIGH, DEAD }
 
 const PROJECTILE := preload("res://Scenes/Effects/EnemyProjectile.tscn")
-const GRAVITY := 900.0
+## Hover height (above the player's standing height) for the dormant low phase —
+## tuned so a standing attack reaches it.
+const HOVER_LOW := 40.0
 
 @export_group("Phase")
-## Lifts off once HP fraction drops to/below this (0.6 = after ~40% damage).
 @export_range(0.0, 1.0) var float_trigger: float = 0.6
 
-@export_group("Grounded")
-@export var ground_speed: float = 48.0
+@export_group("Movement")
+@export var patrol_speed: float = 40.0
 @export var patrol_range: float = 70.0
-
-@export_group("Airborne")
-## Height above the player's standing position to hover while engaging.
-@export var hover_height: float = 42.0
-@export var approach_gain: float = 4.0
-@export var max_move_speed: float = 115.0
 @export var bob_amplitude: float = 6.0
 @export var bob_speed: float = 3.2
+## Hover height above the player's standing position once airborne.
+@export var hover_height: float = 56.0
+@export var approach_gain: float = 5.0
+@export var max_move_speed: float = 130.0
 
 @export_group("Detection")
-@export var detect_radius: float = 240.0
-@export var lose_radius: float = 380.0
+@export var detect_radius: float = 250.0
+@export var lose_radius: float = 400.0
 
 @export_group("Attack")
 @export var fire_cooldown: float = 1.4
@@ -55,7 +50,7 @@ const GRAVITY := 900.0
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var _combat: Node = get_node_or_null("/root/Combat")
 
-var _phase: Phase = Phase.GROUNDED
+var _phase: Phase = Phase.LOW
 var _player: Node2D
 var _spawn: Vector2
 var _bob_t: float = 0.0
@@ -68,6 +63,7 @@ var _player_ground_y: float = 0.0
 func _ready() -> void:
 	add_to_group("enemies")
 	_spawn = global_position
+	_player_ground_y = global_position.y
 	_bob_t = randf() * TAU
 	_fire_timer = randf() * fire_cooldown
 	_acquire_player()
@@ -81,54 +77,70 @@ func _physics_process(delta: float) -> void:
 		return
 	_bob_t += delta
 
-	# Knockback/stun briefly overrides movement so hits feel impactful.
 	if _stun_timer > 0.0:
 		_stun_timer -= delta
 		velocity = velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
 		move_and_slide()
 		return
 
+	if is_instance_valid(_player) and _player.has_method("is_on_floor") and _player.is_on_floor():
+		_player_ground_y = _player.global_position.y
+
 	match _phase:
-		Phase.GROUNDED:
-			_grounded(delta)
-		Phase.AIRBORNE:
-			_airborne(delta)
+		Phase.LOW:
+			_phase_low()
+		Phase.HIGH:
+			_phase_high(delta)
 	move_and_slide()
 	_face()
 
 
-# --- Phase 1: dormant ground sentinel ---------------------------------------
-func _grounded(delta: float) -> void:
-	velocity.y += GRAVITY * delta  # settle and stay on the floor
-	if _player_in_range(detect_radius) and is_instance_valid(_player):
-		# Drift toward the player along the ground.
-		var dir := signf(_player.global_position.x - global_position.x)
-		velocity.x = dir * ground_speed
-	else:
-		# Patrol around the spawn point.
-		velocity.x = float(_patrol_dir) * ground_speed
-		if absf(global_position.x - _spawn.x) > patrol_range:
-			_patrol_dir = -1 if global_position.x > _spawn.x else 1
-
-
-# --- Phase 2: airborne bolt-shooter -----------------------------------------
-func _airborne(delta: float) -> void:
+func _phase_low() -> void:
+	# Always follow the player (hovering above), never wander randomly.
 	if is_instance_valid(_player):
-		if _player.has_method("is_on_floor") and _player.is_on_floor():
-			_player_ground_y = _player.global_position.y
-		var target := Vector2(_player.global_position.x, _player_ground_y - hover_height)
-		var desired := (target - global_position) * approach_gain
-		velocity = desired.limit_length(max_move_speed)
+		_hover_to(_follow_target(HOVER_LOW))
 	else:
 		_acquire_player()
-		velocity = velocity.move_toward(Vector2.ZERO, 200.0 * delta)
-	velocity.y += sin(_bob_t * bob_speed) * bob_amplitude * 0.25
+		_patrol()
 
-	# Fire on a cooldown once it has line on the player.
+
+func _phase_high(delta: float) -> void:
+	if not is_instance_valid(_player):
+		_acquire_player()
+		_patrol()
+		return
+	_hover_to(_follow_target(hover_height))
 	_fire_timer -= delta
-	if _fire_timer <= 0.0 and _player_in_range(lose_radius):
+	if _fire_timer <= 0.0:
 		_fire()
 		_fire_timer = fire_cooldown
+
+
+## A point above the player to hover at. Keeps a horizontal standoff so the drone
+## hovers beside-and-above rather than sitting on top of the player.
+func _follow_target(height: float) -> Vector2:
+	var px := _player.global_position.x
+	var standoff := 26.0
+	# Trail to the side the player is moving away from, so it stays near but clear.
+	if global_position.x < px:
+		px -= standoff
+	else:
+		px += standoff
+	return Vector2(px, _player_ground_y - height)
+
+
+## Ease toward a hover point (slows as it arrives) + a faint bob.
+func _hover_to(target: Vector2) -> void:
+	var desired := (target - global_position) * approach_gain
+	velocity = desired.limit_length(max_move_speed)
+	velocity.y += sin(_bob_t * bob_speed) * bob_amplitude * 0.25
+
+
+func _patrol() -> void:
+	velocity.x = float(_patrol_dir) * patrol_speed
+	if absf(global_position.x - _spawn.x) > patrol_range:
+		_patrol_dir = -1 if global_position.x > _spawn.x else 1
+	velocity.y = (_spawn.y - global_position.y) * 4.0 + sin(_bob_t * bob_speed) * bob_amplitude
 
 
 func _fire() -> void:
@@ -138,15 +150,13 @@ func _fire() -> void:
 	var aim := (_player.global_position + Vector2(0.0, -12.0)) - muzzle
 	var bolt := PROJECTILE.instantiate()
 	bolt.launch(aim, projectile_damage)
-	get_parent().add_child(bolt)  # parent to the level (always valid)
+	get_parent().add_child(bolt)
 	bolt.global_position = muzzle
 
 
 func _lift_off() -> void:
-	_phase = Phase.AIRBORNE
-	_player_ground_y = _player.global_position.y if is_instance_valid(_player) else _spawn.y
+	_phase = Phase.HIGH
 	_fire_timer = 0.35
-	velocity.y = -130.0  # a little pop as it wakes and rises
 
 
 func _player_in_range(radius: float) -> bool:
@@ -159,7 +169,6 @@ func _acquire_player() -> void:
 		_player_ground_y = _player.global_position.y
 
 
-## Drone art faces left; face the player, else face travel direction.
 func _face() -> void:
 	if is_instance_valid(_player):
 		sprite.flip_h = _player.global_position.x > global_position.x
@@ -178,12 +187,10 @@ func _on_hurt(info: Dictionary) -> void:
 	DamageNumber.spawn(get_tree().current_scene, global_position + Vector2(0, -34), info["damage"], info["is_crit"])
 	if _combat != null:
 		_combat.hit_feedback(info["damage"], info["is_crit"], global_position + Vector2(0, -16))
-	# Wound it enough and it takes flight.
-	if _phase == Phase.GROUNDED and health.is_alive() and health.fraction() <= float_trigger:
+	if _phase == Phase.LOW and health.is_alive() and health.fraction() <= float_trigger:
 		_lift_off()
 
 
-## Quick squash-and-stretch punch on the sprite — cheap, very juicy hit read.
 func _squash() -> void:
 	sprite.scale = Vector2(1.3, 0.72)
 	var tween := create_tween()
@@ -210,8 +217,8 @@ func _on_died() -> void:
 	if burst != null:
 		burst.restart()
 	if _combat != null:
-		_combat.shake(0.6)        # satisfying punch on the kill
-		_combat.hitstop(0.11)     # heavier freeze so the kill lands
+		_combat.shake(0.6)
+		_combat.hitstop(0.11)
 	var au := get_node_or_null("/root/Audio")
 	if au != null:
 		au.play("explosion", -4.0)
