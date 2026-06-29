@@ -39,6 +39,10 @@ var energy: float = 100.0
 @onready var health: HealthComponent = $Health
 @onready var dash_particles: CPUParticles2D = $DashParticles
 @onready var land_dust: CPUParticles2D = $LandDust
+@onready var interact_sensor: Area2D = $InteractSensor
+
+## Interactables currently in range (terminals, etc.).
+var _interactables: Array = []
 ## Resolved by path (not the global identifier) so the player stays compilable
 ## and runnable in headless/test contexts where autoloads aren't registered.
 @onready var _combat: Node = get_node_or_null("/root/Combat")
@@ -90,6 +94,8 @@ func _ready() -> void:
 	_spawn_point = global_position
 	hurtbox.hurt.connect(_on_hurt)
 	health.died.connect(_on_died)
+	interact_sensor.area_entered.connect(_on_interactable_entered)
+	interact_sensor.area_exited.connect(_on_interactable_exited)
 	state_machine.setup(self)
 
 
@@ -108,6 +114,8 @@ func _sample_input() -> void:
 	input_y = Input.get_axis("move_up", "move_down")
 	jump_held = Input.is_action_pressed("jump")
 	jump_released = Input.is_action_just_released("jump")
+	if Input.is_action_just_pressed("interact"):
+		_try_interact()
 	if Input.is_action_just_pressed("jump"):
 		# Down + jump while stood on a one-way platform = drop through it,
 		# and the press is consumed instead of buffering a jump.
@@ -116,6 +124,36 @@ func _sample_input() -> void:
 			_start_drop_through()
 		else:
 			_jump_buffer_timer = config.jump_buffer_time
+
+
+# ---------------------------------------------------------------------------
+# Interaction (hack terminals, etc.)
+# ---------------------------------------------------------------------------
+func _on_interactable_entered(area: Area2D) -> void:
+	if area is Interactable:
+		_interactables.append(area)
+		area.set_prompt_visible(true)
+
+
+func _on_interactable_exited(area: Area2D) -> void:
+	if area in _interactables:
+		_interactables.erase(area)
+		area.set_prompt_visible(false)
+
+
+## Interact with the nearest usable interactable in range.
+func _try_interact() -> void:
+	var best: Interactable = null
+	var best_dist := INF
+	for it in _interactables:
+		if not is_instance_valid(it) or not it.can_interact():
+			continue
+		var d := global_position.distance_squared_to(it.global_position)
+		if d < best_dist:
+			best_dist = d
+			best = it
+	if best != null:
+		best.interact(self)
 
 
 func _start_drop_through() -> void:

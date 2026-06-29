@@ -28,6 +28,9 @@ size = Vector2(34, 32)
 [sub_resource type="RectangleShape2D" id="Rect_hurtbox"]
 size = Vector2(14, 28)
 
+[sub_resource type="CircleShape2D" id="Circle_interact"]
+radius = 22.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 257
@@ -110,6 +113,14 @@ initial_velocity_max = 55.0
 scale_amount_min = 1.0
 scale_amount_max = 2.0
 color = Color(0.62, 0.68, 0.82, 0.8)
+
+[node name="InteractSensor" type="Area2D" parent="."]
+position = Vector2(0, -14)
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractSensor"]
+shape = SubResource("Circle_interact")
 
 [node name="Sensors" type="Node2D" parent="."]
 

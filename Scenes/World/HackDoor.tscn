@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/World/hack_door.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="Rect_door"]
+size = Vector2(12, 46)
+
+[node name="HackDoor" type="StaticBody2D"]
+collision_layer = 1
+collision_mask = 0
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Rect_door")
+
+[node name="Body" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = -23.0
+offset_right = 6.0
+offset_bottom = 23.0
+color = Color(0.16, 0.09, 0.24, 1)
+
+[node name="Bars" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = -23.0
+offset_right = 2.0
+offset_bottom = 23.0
+color = Color(0.62, 0.45, 1, 1)

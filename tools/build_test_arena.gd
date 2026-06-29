@@ -90,6 +90,30 @@ func _initialize() -> void:
 			_owned(drone)
 			d += 1
 
+	# ---- Hackable gate: terminal -> door -> Echo Fragment reward ----------
+	var door_scene: PackedScene = ResourceLoader.load("res://Scenes/World/HackDoor.tscn")
+	var term_scene: PackedScene = ResourceLoader.load("res://Scenes/World/HackTerminal.tscn")
+	var frag_scene: PackedScene = ResourceLoader.load("res://Scenes/World/EchoFragment.tscn")
+	if door_scene != null and term_scene != null and frag_scene != null:
+		var door := door_scene.instantiate()
+		door.name = "HackDoor"
+		door.position = Vector2(596, 177)
+		_root.add_child(door)
+		_owned(door)
+
+		var term := term_scene.instantiate()
+		term.name = "HackTerminal"
+		term.position = Vector2(556, 200)
+		_root.add_child(term)
+		_owned(term)
+		term.target_path = term.get_path_to(door)  # saved into the packed scene
+
+		var frag := frag_scene.instantiate()
+		frag.name = "EchoFragment"
+		frag.position = Vector2(610, 186)
+		_root.add_child(frag)
+		_owned(frag)
+
 	_build_hud()
 
 	# ---- Pack & save -----------------------------------------------------
