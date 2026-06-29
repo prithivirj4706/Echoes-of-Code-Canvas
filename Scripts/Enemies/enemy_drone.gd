@@ -198,5 +198,10 @@ func _on_died() -> void:
 	_phase = Phase.DEAD
 	velocity = Vector2.ZERO
 	hurtbox.set_deferred("monitoring", false)
+	var burst := get_node_or_null("DeathParticles")
+	if burst != null:
+		burst.restart()
+	if _combat != null:
+		_combat.shake(0.5)  # satisfying punch on the kill
 	sprite.play("explode")
 	sprite.animation_finished.connect(queue_free, CONNECT_ONE_SHOT)

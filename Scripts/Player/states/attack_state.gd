@@ -77,8 +77,15 @@ func _start_swing() -> void:
 	player.hitbox.damage = step["damage"]
 	player.hitbox.knockback_force = step["knockback"]
 	player.hitbox.knockback_up = step["up"]
-	# Commit a forward lunge in the facing direction.
-	player.velocity.x = float(player.facing) * step["lunge"]
+	# Commit a forward lunge — only on the ground so air swings stay put.
+	if player.is_on_floor():
+		player.velocity.x = float(player.facing) * step["lunge"]
+
+	# Slash trail VFX (gold + bigger on the finisher).
+	var big := _index == COMBO.size() - 1
+	var color := SlashEffect.HEAVY_COLOR if big else SlashEffect.LIGHT_COLOR
+	var at := player.global_position + Vector2(float(player.facing) * 14.0, -16.0)
+	SlashEffect.spawn(player.get_parent(), at, player.facing, big, color)
 
 
 func _update_hitbox_window() -> void:

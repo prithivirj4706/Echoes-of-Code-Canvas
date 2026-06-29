@@ -37,6 +37,8 @@ var energy: float = 100.0
 @onready var hitbox: Hitbox = $Hitbox
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var health: HealthComponent = $Health
+@onready var dash_particles: CPUParticles2D = $DashParticles
+@onready var land_dust: CPUParticles2D = $LandDust
 ## Resolved by path (not the global identifier) so the player stays compilable
 ## and runnable in headless/test contexts where autoloads aren't registered.
 @onready var _combat: Node = get_node_or_null("/root/Combat")
@@ -69,6 +71,8 @@ var _invuln_timer: float = 0.0
 var _hitbox_reach: float = 14.0
 var _spawn_point: Vector2
 var _was_on_floor: bool = false
+## Peak downward speed reached while airborne — used to size the landing dust.
+var _air_fall_speed: float = 0.0
 
 
 func _ready() -> void:
@@ -128,10 +132,15 @@ func _update_timers(delta: float) -> void:
 	else:
 		_coyote_timer = maxf(_coyote_timer - delta, 0.0)
 
-	# Reset air budgets the instant we land.
+	# Reset air budgets the instant we land + kick up landing dust.
 	if on_floor and not _was_on_floor:
 		air_jumps_left = config.max_air_jumps
 		air_dashes_left = config.max_air_dashes
+		if _air_fall_speed > 150.0 and land_dust != null:
+			land_dust.restart()
+		_air_fall_speed = 0.0
+	elif not on_floor:
+		_air_fall_speed = maxf(_air_fall_speed, velocity.y)
 	_was_on_floor = on_floor
 
 	# Wall coyote: remember the last wall we touched for a short grace window.
@@ -264,6 +273,14 @@ func can_dash() -> bool:
 ## Enable/disable the attack hitbox (called by AttackState during active frames).
 func set_hitbox_active(active: bool) -> void:
 	hitbox.set_active(active)
+
+
+## Burst of digital particles trailing a dash (called by DashState).
+func emit_dash_burst() -> void:
+	if dash_particles == null:
+		return
+	dash_particles.direction = Vector2(-float(facing), -0.15)
+	dash_particles.restart()
 
 
 ## True the frame the attack button was pressed — used by states to enter Attack.

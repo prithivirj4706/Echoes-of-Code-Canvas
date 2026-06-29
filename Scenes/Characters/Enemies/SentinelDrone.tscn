@@ -40,6 +40,22 @@ faction = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("Rect_hurt")
 
+[node name="DeathParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+local_coords = false
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 120)
+initial_velocity_min = 60.0
+initial_velocity_max = 165.0
+scale_amount_min = 1.0
+scale_amount_max = 2.5
+color = Color(0.32, 0.86, 1, 1)
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5")
 max_health = 24
