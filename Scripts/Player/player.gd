@@ -15,8 +15,13 @@ class_name Player
 extends CharacterBody2D
 
 signal facing_changed(facing: int)
+signal energy_changed(current: float, maximum: float)
 
 @export var config: MovementConfig
+## Ability resource (shown on the HUD; reserved for special abilities later).
+@export var energy_max: float = 100.0
+
+var energy: float = 100.0
 
 # --- Scene references --------------------------------------------------------
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -72,6 +77,7 @@ func _ready() -> void:
 		config = MovementConfig.new()
 		push_warning("Player has no MovementConfig assigned; using defaults.")
 	add_to_group("player")  # enemies locate the player via this group
+	energy = energy_max
 	up_direction = Vector2.UP
 	air_jumps_left = config.max_air_jumps
 	air_dashes_left = config.max_air_dashes

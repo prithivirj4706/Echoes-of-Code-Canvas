@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/pause_menu.gd" id="1"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+layer = 20
+process_mode = 3
+script = ExtResource("1")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.02, 0.05, 0.66)
+
+[node name="Menu" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="CenterContainer" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="Menu/Center"]
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Menu/Center/VBox"]
+theme_override_colors/font_color = Color(0.46, 0.9, 1.0, 1)
+theme_override_font_sizes/font_size = 18
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Menu/Center/VBox"]
+custom_minimum_size = Vector2(96, 0)
+text = "Resume"
+
+[node name="Restart" type="Button" parent="Menu/Center/VBox"]
+custom_minimum_size = Vector2(96, 0)
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Menu/Center/VBox"]
+custom_minimum_size = Vector2(96, 0)
+text = "Quit"
