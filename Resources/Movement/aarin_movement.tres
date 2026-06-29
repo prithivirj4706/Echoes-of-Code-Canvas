@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="MovementConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Player/movement_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+run_speed = 124.0
+ground_acceleration = 1500.0
+ground_deceleration = 1900.0
+air_acceleration = 950.0
+air_deceleration = 520.0
+turn_around_multiplier = 1.9
+jump_height = 52.0
+jump_time_to_peak = 0.38
+jump_time_to_descent = 0.30
+jump_release_cut = 0.42
+max_fall_speed = 360.0
+apex_gravity_multiplier = 0.8
+apex_velocity_threshold = 28.0
+max_air_jumps = 1
+air_jump_height_scale = 0.92
+coyote_time = 0.1
+jump_buffer_time = 0.12
+dash_speed = 270.0
+dash_duration = 0.16
+dash_cooldown = 0.3
+max_air_dashes = 1
+dash_end_speed_keep = 0.55
+dash_gravity_disabled = 1.0
+wall_slide_speed = 46.0
+wall_slide_acceleration = 540.0
+wall_jump_push = 138.0
+wall_jump_height_scale = 1.0
+wall_jump_input_lock = 0.14
+wall_coyote_time = 0.1
+ledge_grab_enabled = true
+ledge_snap_offset = Vector2(2, 0)
+ledge_climb_duration = 0.28

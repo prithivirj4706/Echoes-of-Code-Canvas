@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://Sprites/World/Digital/Effects/Shot/shot-1.png" id="1_ro0ct"]
+[ext_resource type="Texture2D" path="res://Sprites/World/Digital/Effects/Shot/shot-2.png" id="2_errtj"]
+[ext_resource type="Texture2D" path="res://Sprites/World/Digital/Effects/Shot/shot-3.png" id="3_sksg8"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ro0ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_errtj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sksg8")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 14.0
+}]

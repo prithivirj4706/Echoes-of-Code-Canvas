@@ -1,0 +1,13 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# macOS
+.DS_Store
+
+# Godot exports
+/build/
+/export/
+
+# Scratch
+*.tmp

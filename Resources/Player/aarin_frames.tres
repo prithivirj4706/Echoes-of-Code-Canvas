@@ -1,0 +1,378 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack1-00.png" id="1_70nji"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack1-01.png" id="2_suaik"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack1-02.png" id="3_i4dml"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack1-03.png" id="4_gjsax"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack1-04.png" id="5_j187p"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack2-00.png" id="6_ghov6"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack2-01.png" id="7_06rji"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack2-02.png" id="8_6t7x3"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack2-03.png" id="9_w5vdk"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack2-04.png" id="10_47njj"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack2-05.png" id="11_jda7a"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack3-00.png" id="12_hl6oj"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack3-01.png" id="13_c2oi2"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack3-02.png" id="14_41b64"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack3-03.png" id="15_akbx7"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack3-04.png" id="16_a44v4"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-attack3-05.png" id="17_uvodv"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crouch-00.png" id="18_6o6s5"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crouch-01.png" id="19_4ae0j"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crouch-02.png" id="20_qaaac"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crouch-03.png" id="21_p1ggi"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-smrslt-00.png" id="22_1pwdb"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-smrslt-01.png" id="23_ncqmy"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-smrslt-02.png" id="24_srcnk"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-smrslt-03.png" id="25_g0cqg"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-die-00.png" id="26_y2mae"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-die-01.png" id="27_w1vwg"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-die-02.png" id="28_rkjp4"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-die-03.png" id="29_yk8te"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-die-04.png" id="30_0m00u"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-die-05.png" id="31_t6khv"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-die-06.png" id="32_e7esu"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-fall-00.png" id="33_m8vhk"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-fall-01.png" id="34_4yevh"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-hurt-00.png" id="35_hl41n"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-hurt-01.png" id="36_t4vv8"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-hurt-02.png" id="37_ndkgw"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-idle-00.png" id="38_e00q1"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-idle-01.png" id="39_vwm5w"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-idle-02.png" id="40_kwl5r"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-idle-03.png" id="41_imv0j"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-idle-2-00.png" id="42_udf6p"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-idle-2-01.png" id="43_c276y"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-idle-2-02.png" id="44_0bwvf"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-idle-2-03.png" id="45_wam0w"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-jump-00.png" id="46_dtdjk"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-jump-01.png" id="47_ncn5c"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-jump-02.png" id="48_ymps8"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-jump-03.png" id="49_fkhq2"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-clmb-00.png" id="50_boxod"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-clmb-01.png" id="51_sod5i"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-clmb-02.png" id="52_6limi"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-clmb-03.png" id="53_ycfyc"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-clmb-04.png" id="54_0uegl"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-jmp-00.png" id="55_kr1vv"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-jmp-01.png" id="56_xgtqr"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-jmp-02.png" id="57_adtph"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-run-00.png" id="58_s3wka"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-run-01.png" id="59_fisc3"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-run-02.png" id="60_e1lgx"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-run-03.png" id="61_qa2sb"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-run-04.png" id="62_vu3ib"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-run-05.png" id="63_h7fx2"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-slide-00.png" id="64_dskor"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-slide-01.png" id="65_mcnqh"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-stand-00.png" id="66_701d6"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-stand-01.png" id="67_7bd3k"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-stand-02.png" id="68_iujgh"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-grb-00.png" id="69_qdiqn"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-grb-01.png" id="70_58lf3"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-grb-02.png" id="71_6nkce"]
+[ext_resource type="Texture2D" path="res://Sprites/Characters/Player/Aarin/adventurer-crnr-grb-03.png" id="72_augac"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_70nji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_suaik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i4dml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gjsax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_j187p")
+}],
+"loop": 0,
+"name": &"attack1",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ghov6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_06rji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6t7x3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_w5vdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_47njj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jda7a")
+}],
+"loop": 0,
+"name": &"attack2",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_hl6oj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_c2oi2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_41b64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_akbx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_a44v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uvodv")
+}],
+"loop": 0,
+"name": &"attack3",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_6o6s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_4ae0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_qaaac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_p1ggi")
+}],
+"loop": 0,
+"name": &"crouch",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_1pwdb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ncqmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_srcnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_g0cqg")
+}],
+"loop": 0,
+"name": &"dash",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_y2mae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_w1vwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_rkjp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_yk8te")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_0m00u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_t6khv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_e7esu")
+}],
+"loop": 0,
+"name": &"die",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_m8vhk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_4yevh")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("35_hl41n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_t4vv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ndkgw")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_e00q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_vwm5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_kwl5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_imv0j")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("42_udf6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_c276y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_0bwvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_wam0w")
+}],
+"loop": 1,
+"name": &"idle_alt",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("46_dtdjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_ncn5c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_ymps8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_fkhq2")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("50_boxod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_sod5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_6limi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_ycfyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_0uegl")
+}],
+"loop": 0,
+"name": &"ledge_climb",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("55_kr1vv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_xgtqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_adtph")
+}],
+"loop": 0,
+"name": &"ledge_grab",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("58_s3wka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_fisc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_e1lgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_qa2sb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_vu3ib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_h7fx2")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("64_dskor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_mcnqh")
+}],
+"loop": 0,
+"name": &"slide",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("66_701d6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_7bd3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_iujgh")
+}],
+"loop": 0,
+"name": &"stand",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("69_qdiqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_58lf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_6nkce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_augac")
+}],
+"loop": 1,
+"name": &"wall_slide",
+"speed": 8.0
+}]

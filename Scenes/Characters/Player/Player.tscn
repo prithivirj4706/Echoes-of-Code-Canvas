@@ -1,0 +1,139 @@
+[gd_scene load_steps=22 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1"]
+[ext_resource type="Resource" path="res://Resources/Movement/aarin_movement.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://Resources/Player/aarin_frames.tres" id="3"]
+[ext_resource type="Script" path="res://Scripts/Player/player_state_machine.gd" id="4"]
+[ext_resource type="Script" path="res://Scripts/Player/states/idle_state.gd" id="5"]
+[ext_resource type="Script" path="res://Scripts/Player/states/run_state.gd" id="6"]
+[ext_resource type="Script" path="res://Scripts/Player/states/jump_state.gd" id="7"]
+[ext_resource type="Script" path="res://Scripts/Player/states/fall_state.gd" id="8"]
+[ext_resource type="Script" path="res://Scripts/Player/states/wall_slide_state.gd" id="9"]
+[ext_resource type="Script" path="res://Scripts/Player/states/dash_state.gd" id="10"]
+[ext_resource type="Script" path="res://Scripts/Player/states/ledge_grab_state.gd" id="11"]
+[ext_resource type="Script" path="res://Scripts/Player/states/ledge_climb_state.gd" id="12"]
+[ext_resource type="Script" path="res://Scripts/Player/states/attack_state.gd" id="13"]
+[ext_resource type="Script" path="res://Scripts/Player/states/dead_state.gd" id="18"]
+[ext_resource type="Script" path="res://Scripts/Components/shake_camera_2d.gd" id="14"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox.gd" id="15"]
+[ext_resource type="Script" path="res://Scripts/Components/hurtbox.gd" id="16"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="17"]
+
+[sub_resource type="RectangleShape2D" id="Rect_body"]
+size = Vector2(13, 27)
+
+[sub_resource type="RectangleShape2D" id="Rect_hitbox"]
+size = Vector2(34, 32)
+
+[sub_resource type="RectangleShape2D" id="Rect_hurtbox"]
+size = Vector2(14, 28)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 257
+floor_snap_length = 6.0
+floor_constant_speed = true
+script = ExtResource("1")
+config = ExtResource("2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("3")
+animation = "idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13.5)
+shape = SubResource("Rect_body")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -24)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+script = ExtResource("14")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(11, -15)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("15")
+faction = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("Rect_hitbox")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("16")
+faction = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -14)
+shape = SubResource("Rect_hurtbox")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("17")
+max_health = 30
+
+[node name="Sensors" type="Node2D" parent="."]
+
+[node name="WallRayRight" type="RayCast2D" parent="Sensors"]
+position = Vector2(0, -13)
+target_position = Vector2(10, 0)
+collision_mask = 1
+
+[node name="WallRayLeft" type="RayCast2D" parent="Sensors"]
+position = Vector2(0, -13)
+target_position = Vector2(-10, 0)
+collision_mask = 1
+
+[node name="LedgeRayHigh" type="RayCast2D" parent="Sensors"]
+position = Vector2(0, -27)
+target_position = Vector2(12, 0)
+collision_mask = 1
+
+[node name="LedgeRayLow" type="RayCast2D" parent="Sensors"]
+position = Vector2(0, -21)
+target_position = Vector2(12, 0)
+collision_mask = 1
+
+[node name="FloorProbe" type="RayCast2D" parent="Sensors"]
+position = Vector2(0, -2)
+target_position = Vector2(0, 8)
+collision_mask = 256
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4")
+initial_state = "fall"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("6")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("7")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("8")
+
+[node name="WallSlide" type="Node" parent="StateMachine"]
+script = ExtResource("9")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("10")
+
+[node name="LedgeGrab" type="Node" parent="StateMachine"]
+script = ExtResource("11")
+
+[node name="LedgeClimb" type="Node" parent="StateMachine"]
+script = ExtResource("12")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("13")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("18")

@@ -1,0 +1,268 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://Sprites/World/Digital/Backgrounds/skyline-a.png" id="1_3x6i7"]
+[ext_resource type="Texture2D" path="res://Sprites/World/Digital/Backgrounds/buildings-bg.png" id="2_gfv4p"]
+[ext_resource type="Texture2D" path="res://Sprites/World/Digital/Backgrounds/near-buildings-bg.png" id="3_7ksb8"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Player/Player.tscn" id="4_hrjgg"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="5_w85vg"]
+[ext_resource type="Resource" path="res://Resources/Movement/aarin_movement.tres" id="6_wffmv"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Enemies/TrainingDummy.tscn" id="7_0utsu"]
+[ext_resource type="Script" path="res://Scripts/Enemies/training_dummy.gd" id="8_vo15k"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Enemies/SentinelDrone.tscn" id="9_sa512"]
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy_drone.gd" id="10_iw0om"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c8rs"]
+size = Vector2(720, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d34uj"]
+size = Vector2(40, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6hat"]
+size = Vector2(40, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngkwg"]
+size = Vector2(60, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybf6g"]
+size = Vector2(90, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayyg7"]
+size = Vector2(90, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofov1"]
+size = Vector2(80, 12)
+
+[node name="TestArena" type="Node2D" unique_id=1168988195]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=379637677]
+
+[node name="@ParallaxLayer@2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1629477344]
+motion_scale = Vector2(0.15, 1)
+motion_mirroring = Vector2(128, 0)
+
+[node name="@Sprite2D@3" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@2" unique_id=1227195055]
+position = Vector2(0, -30)
+texture = ExtResource("1_3x6i7")
+centered = false
+
+[node name="@ParallaxLayer@4" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1154378295]
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(144, 0)
+
+[node name="@Sprite2D@5" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@4" unique_id=1718741480]
+position = Vector2(0, 60)
+texture = ExtResource("2_gfv4p")
+centered = false
+
+[node name="@ParallaxLayer@6" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1898216092]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(493, 0)
+
+[node name="@Sprite2D@7" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@6" unique_id=1380309468]
+position = Vector2(0, 40)
+texture = ExtResource("3_7ksb8")
+centered = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=1616141991]
+
+[node name="@StaticBody2D@8" type="StaticBody2D" parent="Geometry" unique_id=1622109246]
+position = Vector2(300, 224)
+collision_mask = 0
+
+[node name="@CollisionShape2D@9" type="CollisionShape2D" parent="Geometry/@StaticBody2D@8" unique_id=503846087]
+shape = SubResource("RectangleShape2D_1c8rs")
+
+[node name="@ColorRect@10" type="ColorRect" parent="Geometry/@StaticBody2D@8" unique_id=1698824421]
+z_index = -1
+offset_left = -360.0
+offset_top = -24.0
+offset_right = 360.0
+offset_bottom = 24.0
+color = Color(0.082, 0.094, 0.18, 1)
+
+[node name="@ColorRect@11" type="ColorRect" parent="Geometry/@StaticBody2D@8" unique_id=1017492425]
+offset_left = -360.0
+offset_top = -24.0
+offset_right = 360.0
+offset_bottom = -22.0
+color = Color(0.28, 0.85, 1, 1)
+
+[node name="@StaticBody2D@12" type="StaticBody2D" parent="Geometry" unique_id=42189371]
+position = Vector2(-40, 120)
+collision_mask = 0
+
+[node name="@CollisionShape2D@13" type="CollisionShape2D" parent="Geometry/@StaticBody2D@12" unique_id=744000921]
+shape = SubResource("RectangleShape2D_d34uj")
+
+[node name="@ColorRect@14" type="ColorRect" parent="Geometry/@StaticBody2D@12" unique_id=1321925987]
+z_index = -1
+offset_left = -20.0
+offset_top = -128.0
+offset_right = 20.0
+offset_bottom = 128.0
+color = Color(0.082, 0.094, 0.18, 1)
+
+[node name="@ColorRect@15" type="ColorRect" parent="Geometry/@StaticBody2D@12" unique_id=1963960580]
+offset_left = -20.0
+offset_top = -128.0
+offset_right = 20.0
+offset_bottom = -126.0
+color = Color(0.28, 0.85, 1, 1)
+
+[node name="@StaticBody2D@16" type="StaticBody2D" parent="Geometry" unique_id=77811326]
+position = Vector2(636, 110)
+collision_mask = 0
+
+[node name="@CollisionShape2D@17" type="CollisionShape2D" parent="Geometry/@StaticBody2D@16" unique_id=803269861]
+shape = SubResource("RectangleShape2D_d6hat")
+
+[node name="@ColorRect@18" type="ColorRect" parent="Geometry/@StaticBody2D@16" unique_id=1557382581]
+z_index = -1
+offset_left = -20.0
+offset_top = -140.0
+offset_right = 20.0
+offset_bottom = 140.0
+color = Color(0.082, 0.094, 0.18, 1)
+
+[node name="@ColorRect@19" type="ColorRect" parent="Geometry/@StaticBody2D@16" unique_id=1760904113]
+offset_left = -20.0
+offset_top = -140.0
+offset_right = 20.0
+offset_bottom = -138.0
+color = Color(0.28, 0.85, 1, 1)
+
+[node name="@StaticBody2D@20" type="StaticBody2D" parent="Geometry" unique_id=547163503]
+position = Vector2(150, 150)
+collision_mask = 0
+
+[node name="@CollisionShape2D@21" type="CollisionShape2D" parent="Geometry/@StaticBody2D@20" unique_id=1733106957]
+shape = SubResource("RectangleShape2D_ngkwg")
+
+[node name="@ColorRect@22" type="ColorRect" parent="Geometry/@StaticBody2D@20" unique_id=2018649585]
+z_index = -1
+offset_left = -30.0
+offset_top = -50.0
+offset_right = 30.0
+offset_bottom = 50.0
+color = Color(0.082, 0.094, 0.18, 1)
+
+[node name="@ColorRect@23" type="ColorRect" parent="Geometry/@StaticBody2D@20" unique_id=964855459]
+offset_left = -30.0
+offset_top = -50.0
+offset_right = 30.0
+offset_bottom = -48.0
+color = Color(0.28, 0.85, 1, 1)
+
+[node name="@StaticBody2D@24" type="StaticBody2D" parent="Geometry" unique_id=797379028]
+position = Vector2(360, 150)
+collision_mask = 0
+
+[node name="@CollisionShape2D@25" type="CollisionShape2D" parent="Geometry/@StaticBody2D@24" unique_id=2098888869]
+shape = SubResource("RectangleShape2D_ybf6g")
+
+[node name="@ColorRect@26" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=636208929]
+z_index = -1
+offset_left = -45.0
+offset_top = -9.0
+offset_right = 45.0
+offset_bottom = 9.0
+color = Color(0.082, 0.094, 0.18, 1)
+
+[node name="@ColorRect@27" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=772609804]
+offset_left = -45.0
+offset_top = -9.0
+offset_right = 45.0
+offset_bottom = -7.0
+color = Color(0.28, 0.85, 1, 1)
+
+[node name="@StaticBody2D@28" type="StaticBody2D" parent="Geometry" unique_id=1265790513]
+position = Vector2(520, 96)
+collision_mask = 0
+
+[node name="@CollisionShape2D@29" type="CollisionShape2D" parent="Geometry/@StaticBody2D@28" unique_id=1059457940]
+shape = SubResource("RectangleShape2D_ayyg7")
+
+[node name="@ColorRect@30" type="ColorRect" parent="Geometry/@StaticBody2D@28" unique_id=1565195885]
+z_index = -1
+offset_left = -45.0
+offset_top = -9.0
+offset_right = 45.0
+offset_bottom = 9.0
+color = Color(0.082, 0.094, 0.18, 1)
+
+[node name="@ColorRect@31" type="ColorRect" parent="Geometry/@StaticBody2D@28" unique_id=687231343]
+offset_left = -45.0
+offset_top = -9.0
+offset_right = 45.0
+offset_bottom = -7.0
+color = Color(0.28, 0.85, 1, 1)
+
+[node name="@StaticBody2D@32" type="StaticBody2D" parent="Geometry" unique_id=1172668828]
+position = Vector2(260, 120)
+collision_layer = 256
+collision_mask = 0
+
+[node name="@CollisionShape2D@33" type="CollisionShape2D" parent="Geometry/@StaticBody2D@32" unique_id=2018649351]
+shape = SubResource("RectangleShape2D_ofov1")
+one_way_collision = true
+
+[node name="@ColorRect@34" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=1096677078]
+z_index = -1
+offset_left = -40.0
+offset_top = -6.0
+offset_right = 40.0
+offset_bottom = 6.0
+color = Color(0.082, 0.094, 0.18, 1)
+
+[node name="@ColorRect@35" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=81981524]
+offset_left = -40.0
+offset_top = -6.0
+offset_right = 40.0
+offset_bottom = -4.0
+color = Color(0.62, 0.45, 1, 1)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=818874462 instance=ExtResource("4_hrjgg")]
+position = Vector2(300, 180)
+collision_layer = 2
+collision_mask = 257
+floor_constant_speed = true
+floor_snap_length = 6.0
+script = ExtResource("5_w85vg")
+config = ExtResource("6_wffmv")
+
+[node name="TrainingDummy0" type="CharacterBody2D" parent="." unique_id=1477804939 instance=ExtResource("7_0utsu")]
+position = Vector2(430, 199)
+collision_layer = 4
+script = ExtResource("8_vo15k")
+
+[node name="TrainingDummy1" type="CharacterBody2D" parent="." unique_id=1779336664 instance=ExtResource("7_0utsu")]
+position = Vector2(120, 99)
+collision_layer = 4
+script = ExtResource("8_vo15k")
+
+[node name="SentinelDrone0" type="CharacterBody2D" parent="." unique_id=1022703460 instance=ExtResource("9_sa512")]
+position = Vector2(250, 192)
+collision_layer = 4
+script = ExtResource("10_iw0om")
+
+[node name="SentinelDrone1" type="CharacterBody2D" parent="." unique_id=1495169571 instance=ExtResource("9_sa512")]
+position = Vector2(530, 192)
+collision_layer = 4
+script = ExtResource("10_iw0om")
+
+[node name="SentinelDrone2" type="CharacterBody2D" parent="." unique_id=819882126 instance=ExtResource("9_sa512")]
+position = Vector2(180, 192)
+collision_layer = 4
+script = ExtResource("10_iw0om")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=469466365]
+
+[node name="Controls" type="Label" parent="HUD" unique_id=21768769]
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 8.0
+offset_bottom = 6.0
+theme_override_font_sizes/font_size = 8
+text = "ECHOES OF CODE & CANVAS  —  movement + combat slice
+Move: A/D   Jump: Space (double/wall)   Dash: Shift   Attack: J (combo x3)
+Wall-slide into wall  •  Down+Space = drop through purple  •  hit the dummies"
