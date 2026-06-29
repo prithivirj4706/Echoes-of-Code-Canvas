@@ -174,12 +174,20 @@ func _on_hurt(info: Dictionary) -> void:
 	velocity = info["knockback"]
 	_stun_timer = stun_time
 	_flash()
+	_squash()
 	DamageNumber.spawn(get_tree().current_scene, global_position + Vector2(0, -34), info["damage"], info["is_crit"])
 	if _combat != null:
 		_combat.hit_feedback(info["damage"], info["is_crit"], global_position + Vector2(0, -16))
 	# Wound it enough and it takes flight.
 	if _phase == Phase.GROUNDED and health.is_alive() and health.fraction() <= float_trigger:
 		_lift_off()
+
+
+## Quick squash-and-stretch punch on the sprite — cheap, very juicy hit read.
+func _squash() -> void:
+	sprite.scale = Vector2(1.3, 0.72)
+	var tween := create_tween()
+	tween.tween_property(sprite, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
 func _flash() -> void:
@@ -202,7 +210,8 @@ func _on_died() -> void:
 	if burst != null:
 		burst.restart()
 	if _combat != null:
-		_combat.shake(0.5)  # satisfying punch on the kill
+		_combat.shake(0.6)        # satisfying punch on the kill
+		_combat.hitstop(0.11)     # heavier freeze so the kill lands
 	var au := get_node_or_null("/root/Audio")
 	if au != null:
 		au.play("explosion", -4.0)

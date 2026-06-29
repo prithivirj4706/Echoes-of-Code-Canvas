@@ -44,6 +44,10 @@ func _on_hurt(info: Dictionary) -> void:
 	health.take_damage(info["damage"], info["is_crit"])
 	velocity = info["knockback"]
 	_play_flash()
+	# Squash-and-stretch punch for a juicy hit read.
+	visual.scale = Vector2(1.22, 0.8)
+	var squash := create_tween()
+	squash.tween_property(visual, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	DamageNumber.spawn(get_tree().current_scene, global_position + Vector2(0, -38), info["damage"], info["is_crit"])
 	# The attacker's impact juice (spark + sound + hit-stop + shake).
 	if _combat != null:
