@@ -18,7 +18,7 @@ enum Phase { LOW, HIGH, DEAD }
 const PROJECTILE := preload("res://Scenes/Effects/EnemyProjectile.tscn")
 ## Hover height (above the player's standing height) for the dormant low phase —
 ## tuned so a standing attack reaches it.
-const HOVER_LOW := 40.0
+const HOVER_LOW := 44.0
 
 @export_group("Phase")
 @export_range(0.0, 1.0) var float_trigger: float = 0.6
@@ -116,17 +116,11 @@ func _phase_high(delta: float) -> void:
 		_fire_timer = fire_cooldown
 
 
-## A point above the player to hover at. Keeps a horizontal standoff so the drone
-## hovers beside-and-above rather than sitting on top of the player.
+## Hover directly above the player (in the attack column) at the given height.
+## Staying overhead — not off to the side — is what keeps it inside the reach of
+## the player's swing while the height keeps it off the player's body.
 func _follow_target(height: float) -> Vector2:
-	var px := _player.global_position.x
-	var standoff := 26.0
-	# Trail to the side the player is moving away from, so it stays near but clear.
-	if global_position.x < px:
-		px -= standoff
-	else:
-		px += standoff
-	return Vector2(px, _player_ground_y - height)
+	return Vector2(_player.global_position.x, _player_ground_y - height)
 
 
 ## Ease toward a hover point (slows as it arrives) + a faint bob.

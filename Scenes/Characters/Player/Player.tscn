@@ -23,7 +23,7 @@
 size = Vector2(13, 27)
 
 [sub_resource type="RectangleShape2D" id="Rect_hitbox"]
-size = Vector2(40, 50)
+size = Vector2(42, 54)
 
 [sub_resource type="RectangleShape2D" id="Rect_hurtbox"]
 size = Vector2(14, 28)
@@ -56,7 +56,7 @@ position_smoothing_speed = 7.0
 script = ExtResource("14")
 
 [node name="Hitbox" type="Area2D" parent="."]
-position = Vector2(11, -20)
+position = Vector2(10, -22)
 collision_layer = 8
 collision_mask = 0
 monitoring = false
