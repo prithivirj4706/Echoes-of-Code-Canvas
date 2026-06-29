@@ -203,17 +203,28 @@ func _build_parallax() -> void:
 
 
 func _build_hud() -> void:
+	# Control tips along the bottom (out of the HUD's way).
 	var canvas := CanvasLayer.new()
-	canvas.name = "HUD"
+	canvas.name = "Tips"
 	_root.add_child(canvas)
 	_owned(canvas)
 
 	var label := Label.new()
 	label.name = "Controls"
-	label.position = Vector2(8, 6)
-	label.add_theme_font_size_override("font_size", 8)
-	label.text = "ECHOES OF CODE & CANVAS  —  movement + combat slice\n" \
-		+ "Move: A/D   Jump: Space (double/wall)   Dash: Shift   Attack: J (combo x3)\n" \
-		+ "Wall-slide into wall  •  Down+Space = drop through purple  •  hit the dummies"
+	label.position = Vector2(8, 250)
+	label.add_theme_font_size_override("font_size", 7)
+	label.text = "A/D move  •  Space jump  •  Shift dash  •  J attack  •  Esc pause"
 	canvas.add_child(label)
 	_owned(label)
+
+	# Real HUD (health / energy / fragments) + pause menu.
+	var hud_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/HUD.tscn")
+	if hud_scene != null:
+		var hud := hud_scene.instantiate()
+		_root.add_child(hud)
+		_owned(hud)
+	var pause_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/PauseMenu.tscn")
+	if pause_scene != null:
+		var pause := pause_scene.instantiate()
+		_root.add_child(pause)
+		_owned(pause)
