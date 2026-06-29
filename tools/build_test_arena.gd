@@ -12,6 +12,7 @@ extends SceneTree
 const OUT_PATH := "res://Scenes/Levels/TestArena.tscn"
 const PLAYER_SCENE := "res://Scenes/Characters/Player/Player.tscn"
 const BG_DIR := "res://Sprites/World/Digital/Backgrounds/"
+const PROP_DIR := "res://Sprites/World/Digital/Props/"
 
 const WORLD_LAYER := 1            # "World"
 const ONE_WAY_BIT := 256          # layer 9 -> 1 << 8
@@ -29,6 +30,8 @@ func _initialize() -> void:
 	_root.name = "TestArena"
 
 	_build_parallax()
+	_decorate()
+	_ambient_motes()
 	var geo := Node2D.new()
 	geo.name = "Geometry"
 	_root.add_child(geo)
@@ -115,6 +118,7 @@ func _initialize() -> void:
 		_owned(frag)
 
 	_build_hud()
+	_build_atmosphere()
 
 	# ---- Pack & save -----------------------------------------------------
 	var packed := PackedScene.new()
@@ -178,8 +182,12 @@ func _one_way(parent: Node, center: Vector2, size: Vector2) -> void:
 	_panel_visual(body, size, NEON_ONEWAY)
 
 
-## Dark panel with a bright neon top edge, centered on the body origin.
+## Dark tech panel: body, bright neon top edge, dim underglow line, and small
+## neon corner ticks. Reads as a cyberpunk platform rather than a grey box.
 func _panel_visual(body: Node, size: Vector2, edge: Color) -> void:
+	var hx := size.x * 0.5
+	var hy := size.y * 0.5
+
 	var fill := ColorRect.new()
 	fill.color = PANEL
 	fill.size = size
@@ -188,12 +196,29 @@ func _panel_visual(body: Node, size: Vector2, edge: Color) -> void:
 	body.add_child(fill)
 	_owned(fill)
 
-	var top := ColorRect.new()
-	top.color = edge
-	top.size = Vector2(size.x, 2.0)
-	top.position = Vector2(-size.x * 0.5, -size.y * 0.5)
-	body.add_child(top)
-	_owned(top)
+	# Slightly lighter inner band near the top for a bevel hint.
+	var bevel := ColorRect.new()
+	bevel.color = Color(PANEL.r + 0.05, PANEL.g + 0.06, PANEL.b + 0.09, 1.0)
+	bevel.size = Vector2(size.x, 3.0)
+	bevel.position = Vector2(-hx, -hy + 2.0)
+	body.add_child(bevel)
+	_owned(bevel)
+
+	_rect(body, Vector2(-hx, -hy), Vector2(size.x, 2.0), edge)              # neon top
+	_rect(body, Vector2(-hx, hy - 1.0), Vector2(size.x, 1.0), Color(edge.r, edge.g, edge.b, 0.30))  # underglow
+	# Corner ticks.
+	var tick := 4.0
+	_rect(body, Vector2(-hx, -hy), Vector2(tick, 3.0), edge)
+	_rect(body, Vector2(hx - tick, -hy), Vector2(tick, 3.0), edge)
+
+
+func _rect(parent: Node, pos: Vector2, size: Vector2, color: Color) -> void:
+	var r := ColorRect.new()
+	r.color = color
+	r.size = size
+	r.position = pos
+	parent.add_child(r)
+	_owned(r)
 
 
 func _build_parallax() -> void:
@@ -252,3 +277,105 @@ func _build_hud() -> void:
 		var pause := pause_scene.instantiate()
 		_root.add_child(pause)
 		_owned(pause)
+
+
+# ---------------------------------------------------------------------------
+# Phase 4 — Digital World atmosphere & decoration
+# ---------------------------------------------------------------------------
+
+## Cyberpunk props (antennas, signs, control boxes, animated holograms) placed
+## behind the play geometry so they add depth without blocking gameplay.
+func _decorate() -> void:
+	var decor := Node2D.new()
+	decor.name = "Decor"
+	decor.z_index = -3
+	_root.add_child(decor)
+	_owned(decor)
+
+	_sprite(decor, "antenna.png", Vector2(150, 54))
+	_sprite(decor, "antenna.png", Vector2(602, 38))
+	_sprite(decor, "hotel-sign.png", Vector2(450, 70))
+	_sprite(decor, "banners.png", Vector2(322, 78))
+	_sprite(decor, "banner-open.png", Vector2(96, 64))
+	_sprite(decor, "control-box-3.png", Vector2(40, 150))
+	_sprite(decor, "control-box-1.png", Vector2(636, 150))
+
+	# Animated holograms (floating in open space).
+	var face := ["monitor-face-1.png", "monitor-face-2.png", "monitor-face-3.png", "monitor-face-4.png"]
+	_anim_sprite(decor, face, Vector2(250, 64), 6.0, 1.5)
+	_anim_sprite(decor, face, Vector2(470, 48), 6.0, 1.5)
+	var neon := ["banner-neon-1.png", "banner-neon-2.png", "banner-neon-3.png", "banner-neon-4.png"]
+	_anim_sprite(decor, neon, Vector2(210, 60), 5.0, 1.0)
+
+
+## Slow upward "data motes" drifting through the play space.
+func _ambient_motes() -> void:
+	var motes := CPUParticles2D.new()
+	motes.name = "DataMotes"
+	motes.position = Vector2(300, 215)
+	motes.z_index = -2
+	motes.amount = 42
+	motes.lifetime = 5.0
+	motes.local_coords = false
+	motes.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	motes.emission_rect_extents = Vector2(330, 24)
+	motes.direction = Vector2(0, -1)
+	motes.spread = 18.0
+	motes.gravity = Vector2(0, -5)
+	motes.initial_velocity_min = 5.0
+	motes.initial_velocity_max = 16.0
+	motes.scale_amount_min = 0.6
+	motes.scale_amount_max = 1.4
+	motes.color = Color(0.4, 0.85, 1.0, 0.5)
+	_root.add_child(motes)
+	_owned(motes)
+
+
+## Instance the screen-space atmosphere layers (rain + CRT overlay).
+func _build_atmosphere() -> void:
+	var rain: PackedScene = ResourceLoader.load("res://Scenes/Effects/Rain.tscn")
+	if rain != null:
+		var r := rain.instantiate()
+		_root.add_child(r)
+		_owned(r)
+	var fx: PackedScene = ResourceLoader.load("res://Scenes/Effects/ScreenFX.tscn")
+	if fx != null:
+		var f := fx.instantiate()
+		_root.add_child(f)
+		_owned(f)
+
+
+func _sprite(parent: Node, file: String, pos: Vector2, modulate_v: float = 0.92) -> void:
+	var tex: Texture2D = ResourceLoader.load(PROP_DIR + file)
+	if tex == null:
+		return
+	var s := Sprite2D.new()
+	s.texture = tex
+	s.position = pos
+	s.modulate = Color(modulate_v, modulate_v, modulate_v, 1.0)
+	parent.add_child(s)
+	_owned(s)
+
+
+func _anim_sprite(parent: Node, files: Array, pos: Vector2, fps: float, alpha: float) -> void:
+	var sf := SpriteFrames.new()
+	sf.remove_animation("default")
+	sf.add_animation("loop")
+	sf.set_animation_speed("loop", fps)
+	sf.set_animation_loop("loop", true)
+	var any := false
+	for file in files:
+		var tex: Texture2D = ResourceLoader.load(PROP_DIR + file)
+		if tex != null:
+			sf.add_frame("loop", tex)
+			any = true
+	if not any:
+		return
+	var a := AnimatedSprite2D.new()
+	a.sprite_frames = sf
+	a.animation = "loop"
+	a.autoplay = "loop"
+	a.position = pos
+	a.modulate = Color(1, 1, 1, alpha)
+	parent.add_child(a)
+	_owned(a)

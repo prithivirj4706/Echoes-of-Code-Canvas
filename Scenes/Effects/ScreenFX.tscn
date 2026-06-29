@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Shader" path="res://Shaders/crt_digital.gdshader" id="1"]
+
+[sub_resource type="ShaderMaterial" id="Mat_crt"]
+shader = ExtResource("1")
+shader_parameter/scan_intensity = 0.09
+shader_parameter/vignette_strength = 0.32
+shader_parameter/aberration = 0.7
+
+[node name="ScreenFX" type="CanvasLayer"]
+layer = 3
+
+[node name="Crt" type="ColorRect" parent="."]
+material = SubResource("Mat_crt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
