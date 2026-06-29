@@ -42,6 +42,7 @@ var energy: float = 100.0
 ## Resolved by path (not the global identifier) so the player stays compilable
 ## and runnable in headless/test contexts where autoloads aren't registered.
 @onready var _combat: Node = get_node_or_null("/root/Combat")
+@onready var _audio: Node = get_node_or_null("/root/Audio")
 
 ## 1-based index of the "OneWay" physics layer (see project.godot layer_names).
 const ONE_WAY_LAYER := 9
@@ -208,12 +209,14 @@ func ground_jump() -> void:
 	velocity.y = config.get_jump_velocity()
 	_coyote_timer = 0.0
 	_jump_buffer_timer = 0.0
+	play_sfx("jump")
 
 
 func air_jump() -> void:
 	velocity.y = config.get_air_jump_velocity()
 	air_jumps_left -= 1
 	_jump_buffer_timer = 0.0
+	play_sfx("jump", -9.0)
 
 
 func wall_jump(wall_dir: int) -> void:
@@ -223,6 +226,7 @@ func wall_jump(wall_dir: int) -> void:
 	set_facing(-wall_dir)
 	_wall_coyote_timer = 0.0
 	_jump_buffer_timer = 0.0
+	play_sfx("jump")
 
 
 ## Variable jump height: shorten the arc when the button is released early.
@@ -275,6 +279,12 @@ func set_hitbox_active(active: bool) -> void:
 	hitbox.set_active(active)
 
 
+## Play a sound effect through the Audio autoload (safe if absent).
+func play_sfx(sound: String, volume_db: float = -7.0) -> void:
+	if _audio != null:
+		_audio.play(sound, volume_db)
+
+
 ## Burst of digital particles trailing a dash (called by DashState).
 func emit_dash_burst() -> void:
 	if dash_particles == null:
@@ -295,8 +305,9 @@ func _on_hurt(info: Dictionary) -> void:
 	health.take_damage(info["damage"], info["is_crit"])
 	velocity = info["knockback"]
 	_invuln_timer = HIT_INVULN
+	play_sfx("hurt", -4.0)
 	if _combat != null:
-		_combat.hit_feedback(info["damage"], info["is_crit"])
+		_combat.hit_feedback(info["damage"], info["is_crit"], global_position + Vector2(0, -16))
 	_flash_invuln()
 
 

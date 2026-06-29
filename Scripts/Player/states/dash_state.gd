@@ -17,6 +17,7 @@ func enter(_previous: String, _data: Dictionary = {}) -> void:
 	player.start_dash_cooldown()
 	player.velocity = Vector2(float(_dir) * player.config.dash_speed, 0.0)
 	player.emit_dash_burst()
+	player.play_sfx("dash", -8.0)
 	player.sprite.play("dash")
 	player.sprite.frame = 0
 

@@ -176,7 +176,7 @@ func _on_hurt(info: Dictionary) -> void:
 	_flash()
 	DamageNumber.spawn(get_tree().current_scene, global_position + Vector2(0, -34), info["damage"], info["is_crit"])
 	if _combat != null:
-		_combat.hit_feedback(info["damage"], info["is_crit"])
+		_combat.hit_feedback(info["damage"], info["is_crit"], global_position + Vector2(0, -16))
 	# Wound it enough and it takes flight.
 	if _phase == Phase.GROUNDED and health.is_alive() and health.fraction() <= float_trigger:
 		_lift_off()
@@ -203,5 +203,8 @@ func _on_died() -> void:
 		burst.restart()
 	if _combat != null:
 		_combat.shake(0.5)  # satisfying punch on the kill
+	var au := get_node_or_null("/root/Audio")
+	if au != null:
+		au.play("explosion", -4.0)
 	sprite.play("explode")
 	sprite.animation_finished.connect(queue_free, CONNECT_ONE_SHOT)

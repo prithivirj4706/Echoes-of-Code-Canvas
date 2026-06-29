@@ -45,9 +45,9 @@ func _on_hurt(info: Dictionary) -> void:
 	velocity = info["knockback"]
 	_play_flash()
 	DamageNumber.spawn(get_tree().current_scene, global_position + Vector2(0, -38), info["damage"], info["is_crit"])
-	# The attacker's impact juice (hit-stop + screen shake), scaled by the hit.
+	# The attacker's impact juice (spark + sound + hit-stop + shake).
 	if _combat != null:
-		_combat.hit_feedback(info["damage"], info["is_crit"])
+		_combat.hit_feedback(info["damage"], info["is_crit"], global_position + Vector2(0, -16))
 
 
 func _play_flash() -> void:

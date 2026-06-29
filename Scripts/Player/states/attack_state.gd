@@ -81,6 +81,8 @@ func _start_swing() -> void:
 	if player.is_on_floor():
 		player.velocity.x = float(player.facing) * step["lunge"]
 
+	player.play_sfx("swing", -9.0)
+
 	# Slash trail VFX (gold + bigger on the finisher).
 	var big := _index == COMBO.size() - 1
 	var color := SlashEffect.HEAVY_COLOR if big else SlashEffect.LIGHT_COLOR

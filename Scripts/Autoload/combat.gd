@@ -10,11 +10,19 @@ extends Node
 var _stopping: bool = false
 
 
-## One call for a landed hit: freezes briefly and shakes, scaled by damage.
-func hit_feedback(damage: int, is_crit: bool = false) -> void:
+## One call for a landed hit: spark + sound + hit-stop + shake, scaled by damage.
+## Pass the world position of the impact to spawn a hit-spark there.
+func hit_feedback(damage: int, is_crit: bool = false, position: Vector2 = Vector2.INF) -> void:
 	var power := clampf(float(damage) / 20.0, 0.15, 1.0)
 	var stop := 0.05 + 0.10 * power + (0.04 if is_crit else 0.0)
 	var trauma := 0.25 + 0.45 * power + (0.25 if is_crit else 0.0)
+
+	var au := get_node_or_null("/root/Audio")
+	if au != null:
+		au.play("crit" if is_crit else "hit", -5.0)
+	if position != Vector2.INF:
+		HitSpark.spawn(get_tree().current_scene, position, is_crit)
+
 	shake(trauma)
 	hitstop(stop)
 
