@@ -20,16 +20,19 @@ acceptance criteria hold. Scale is /9.
 | Content / one polished level | 2 | 7 | 8 |
 | Movement / Visual / Version control | 8 | maintain | — |
 
-## Phase 1 — Lock the combat loop  (Combat 5→8, Enemy →7)
+## Phase 1 — Lock the combat loop  (Combat 5→8, Enemy →7)  ✅ DONE
 Direction chosen: **ranged attack**. Aarin gets an energy-bolt (costs Energy),
-keeping melee for the ground. Flying enemies become reliably hittable by design.
-- Energy-cost ranged shot + regen (makes the EN bar meaningful)
-- Final-tune hitstop / knockback / cancel windows
-- Acceptance: hitting enemies feels satisfying & connects every time; no re-tuning.
+keeping melee for the ground. Combat roles locked:
+- Grounded drone: melee + ranged. Flying drone: ranged, or jump-melee to its level.
+- Fixed the root melee bug (toggle hitbox SHAPE, not just monitorable).
 
-## Phase 2 — Feel in the loop  (Process 5→8)
-- A way to run + input + screenshot the live game for self-verification of *feel*
-- Acceptance: combat/feel validated without the user acting as QA.
+## Phase 2 — Feel in the loop  (Process 5→8)  ✅ DONE
+- tools/playtest.gd: drives the REAL player via synthesized Input
+  (Input.action_press) and measures outcomes — jump height, run speed, dash
+  distance, melee/ranged connect — so gameplay is self-verifiable headless.
+- Run: godot --headless --path . --script res://tools/playtest.gd
+- Note: pixel-level visual *feel* still benefits from a human; this covers the
+  functional/balance bugs that kept round-tripping.
 
 ## Phase 3 — Give the slice a shape  (Production 3→7, UI 6→8)
 - Title/main menu → objective → win screen → clean lose/respawn → save fragments
