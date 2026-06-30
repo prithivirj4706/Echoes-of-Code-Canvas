@@ -28,8 +28,8 @@ func _play(is_crit: bool) -> void:
 		line.default_color = color
 		line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 		line.end_cap_mode = Line2D.LINE_CAP_ROUND
-		var len := radius * randf_range(0.7, 1.2)
-		line.points = PackedVector2Array([Vector2(cos(ang), sin(ang)) * 3.0, Vector2(cos(ang), sin(ang)) * len])
+		var ray_len := radius * randf_range(0.7, 1.2)
+		line.points = PackedVector2Array([Vector2(cos(ang), sin(ang)) * 3.0, Vector2(cos(ang), sin(ang)) * ray_len])
 		add_child(line)
 
 	scale = Vector2(0.6, 0.6)

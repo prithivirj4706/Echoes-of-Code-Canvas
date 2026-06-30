@@ -87,6 +87,7 @@ func _ready() -> void:
 		push_warning("Player has no MovementConfig assigned; using defaults.")
 	add_to_group("player")  # enemies locate the player via this group
 	energy = energy_max
+	energy_changed.emit(energy, energy_max)  # prime the HUD
 	up_direction = Vector2.UP
 	air_jumps_left = config.max_air_jumps
 	air_dashes_left = config.max_air_dashes
