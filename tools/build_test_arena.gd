@@ -264,7 +264,7 @@ func _build_hud() -> void:
 	label.name = "Controls"
 	label.position = Vector2(8, 250)
 	label.add_theme_font_size_override("font_size", 7)
-	label.text = "A/D move  •  Space jump  •  Shift dash  •  J attack  •  E hack  •  Esc pause"
+	label.text = "A/D move  •  Space jump  •  Shift dash  •  J melee  •  I/RMB shoot  •  E hack  •  Esc pause"
 	canvas.add_child(label)
 	_owned(label)
 	for path in ["res://Scenes/UI/HUD.tscn", "res://Scenes/UI/PauseMenu.tscn"]:

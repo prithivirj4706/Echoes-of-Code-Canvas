@@ -1,11 +1,9 @@
-## EnemyProjectile (energy bolt)
+## Projectile (energy bolt)
 ##
-## A travelling enemy attack. It IS a Hitbox (so the player's Hurtbox damages the
-## player on contact, with no special casing), moves in a fixed direction, and
-## despawns when it hits the player, hits the world, or its lifetime runs out.
-##
-## Setup: Area2D on the "EnemyHitbox" layer (so the player Hurtbox detects it);
-## its mask includes World + Player so it knows when to despawn.
+## A travelling attack. It IS a Hitbox (so an opposing Hurtbox takes damage with
+## no special casing), moves in a fixed direction, and despawns on contact or
+## when its lifetime runs out. Faction + collision layers/mask are set per scene,
+## so the SAME script powers both the enemy bolt and the player's bolt.
 extends Hitbox
 
 @export var speed: float = 150.0
@@ -25,9 +23,9 @@ func launch(direction: Vector2, projectile_damage: int) -> void:
 
 func _ready() -> void:
 	# Override Hitbox._ready (which disables it) — a bolt is always "live".
+	# faction / layers come from the scene, so this works for player or enemy.
 	monitorable = true
 	monitoring = true
-	faction = 1  # enemy-owned
 	_life = lifetime
 	rotation = _dir.angle()
 	body_entered.connect(_on_body_entered)

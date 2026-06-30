@@ -18,10 +18,22 @@ signal facing_changed(facing: int)
 signal energy_changed(current: float, maximum: float)
 
 @export var config: MovementConfig
-## Ability resource (shown on the HUD; reserved for special abilities later).
+## Energy pool (shown on the HUD) — spent by the ranged bolt, regenerates.
 @export var energy_max: float = 100.0
 
+@export_group("Ranged")
+@export var shot_energy_cost: float = 18.0
+@export var shot_cooldown: float = 0.26
+@export var energy_regen: float = 30.0
+## Delay after firing before energy starts regenerating.
+@export var energy_regen_delay: float = 0.5
+@export var shot_damage: int = 6
+
+const PLAYER_BOLT := preload("res://Scenes/Effects/PlayerBolt.tscn")
+
 var energy: float = 100.0
+var _shot_cooldown_timer: float = 0.0
+var _energy_regen_delay_timer: float = 0.0
 
 # --- Scene references --------------------------------------------------------
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -117,6 +129,8 @@ func _sample_input() -> void:
 	jump_released = Input.is_action_just_released("jump")
 	if Input.is_action_just_pressed("interact"):
 		_try_interact()
+	if Input.is_action_just_pressed("attack_heavy"):
+		_try_shoot()
 	if Input.is_action_just_pressed("jump"):
 		# Down + jump while stood on a one-way platform = drop through it,
 		# and the press is consumed instead of buffering a jump.
@@ -201,6 +215,13 @@ func _update_timers(delta: float) -> void:
 			set_collision_mask_value(ONE_WAY_LAYER, true)
 
 	_invuln_timer = maxf(_invuln_timer - delta, 0.0)
+	_shot_cooldown_timer = maxf(_shot_cooldown_timer - delta, 0.0)
+
+	# Energy regenerates a short beat after the last shot.
+	_energy_regen_delay_timer = maxf(_energy_regen_delay_timer - delta, 0.0)
+	if _energy_regen_delay_timer == 0.0 and energy < energy_max:
+		energy = minf(energy + energy_regen * delta, energy_max)
+		energy_changed.emit(energy, energy_max)
 
 
 # ---------------------------------------------------------------------------
@@ -322,6 +343,26 @@ func set_hitbox_active(active: bool) -> void:
 func play_sfx(sound: String, volume_db: float = -7.0) -> void:
 	if _audio != null:
 		_audio.play(sound, volume_db)
+
+
+## Fire an energy bolt in the facing direction (ranged attack — costs Energy).
+## Lets Aarin reliably hit flying enemies that melee can't reach.
+func _try_shoot() -> void:
+	if _shot_cooldown_timer > 0.0 or energy < shot_energy_cost:
+		return
+	energy -= shot_energy_cost
+	energy_changed.emit(energy, energy_max)
+	_shot_cooldown_timer = shot_cooldown
+	_energy_regen_delay_timer = energy_regen_delay
+
+	var muzzle := global_position + Vector2(float(facing) * 14.0, -18.0)
+	var bolt := PLAYER_BOLT.instantiate()
+	bolt.launch(Vector2(float(facing), 0.0), shot_damage)
+	get_parent().add_child(bolt)
+	bolt.global_position = muzzle
+
+	HitSpark.spawn(get_parent(), muzzle, false)  # muzzle flash
+	play_sfx("shoot", -7.0)
 
 
 ## Burst of digital particles trailing a dash (called by DashState).

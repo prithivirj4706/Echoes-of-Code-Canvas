@@ -20,6 +20,7 @@ const SOUNDS := {
 	"explosion": preload("res://Audio/SFX/explosion.wav"),
 	"hack": preload("res://Audio/SFX/hack.wav"),
 	"pickup": preload("res://Audio/SFX/pickup.wav"),
+	"shoot": preload("res://Audio/SFX/shoot.wav"),
 }
 
 var _players: Array[AudioStreamPlayer] = []
