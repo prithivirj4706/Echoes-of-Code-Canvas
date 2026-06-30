@@ -1,24 +1,25 @@
 ## AttackState — the grounded/air light-attack combo (attack1 → attack2 → attack3).
 ##
-## Game-feel notes:
-##  * Each swing has a small forward LUNGE so attacks feel committed and push
-##    into the enemy.
-##  * The HITBOX is only live during a per-swing active frame window, giving the
-##    attack readable reach and timing.
-##  * Pressing attack again is BUFFERED; if it lands during the cancel window the
-##    next combo step chains seamlessly — otherwise the combo ends.
-##  * Dash cancels the combo for aggressive, expressive play.
+## The hitbox is driven by a TIME window from the swing's start (not by sprite
+## frames). Frame-driven activation proved unreliable — this is deterministic and
+## testable, and guarantees the hitbox is live for the active portion of every
+## swing regardless of animation playback.
+##
+##  * Small forward LUNGE on the ground so attacks feel committed.
+##  * Follow-up presses are BUFFERED and chain the combo within the window.
+##  * Dash cancels the combo.
 extends PlayerState
 
-# Per-step tuning: animation, [active_start_frame, active_end_frame], lunge px/s,
-# damage, knockback. Aarin's combo escalates: light, light, big finisher.
+# Per-step: animation, total duration, [active_start, active_end] seconds,
+# lunge px/s, damage, knockback. Aarin's combo escalates.
 const COMBO := [
-	{"anim": "attack1", "active": [0, 4], "lunge": 70.0, "damage": 5, "knockback": 150.0, "up": 50.0},
-	{"anim": "attack2", "active": [0, 5], "lunge": 55.0, "damage": 5, "knockback": 150.0, "up": 50.0},
-	{"anim": "attack3", "active": [0, 5], "lunge": 95.0, "damage": 9, "knockback": 240.0, "up": 110.0},
+	{"anim": "attack1", "dur": 0.34, "active": [0.04, 0.27], "lunge": 70.0, "damage": 5, "knockback": 150.0, "up": 50.0},
+	{"anim": "attack2", "dur": 0.40, "active": [0.05, 0.33], "lunge": 55.0, "damage": 5, "knockback": 150.0, "up": 50.0},
+	{"anim": "attack3", "dur": 0.46, "active": [0.06, 0.40], "lunge": 95.0, "damage": 9, "knockback": 240.0, "up": 110.0},
 ]
 
 var _index: int = 0
+var _elapsed: float = 0.0
 var _buffered: bool = false
 var _hit_live: bool = false
 
@@ -35,17 +36,16 @@ func exit() -> void:
 
 
 func physics_update(delta: float) -> String:
-	# Buffer a follow-up press at any time during the swing.
+	_elapsed += delta
+
 	if Input.is_action_just_pressed("attack"):
 		_buffered = true
-
-	# Dash-cancel for expressive, aggressive movement.
 	if Input.is_action_just_pressed("dash") and player.can_dash():
 		return "dash"
 
 	_update_hitbox_window()
 
-	# Decelerate the lunge; keep grounded or fall naturally if knocked off.
+	# Decelerate the lunge; hold ground or fall naturally.
 	player.velocity.x = move_toward(player.velocity.x, 0.0, 700.0 * delta)
 	if player.is_on_floor():
 		player.velocity.y = 0.0
@@ -53,16 +53,13 @@ func physics_update(delta: float) -> String:
 		player.apply_gravity(delta)
 	player.move_and_slide()
 
-	# Swing finished (non-looping anim stopped playing).
-	if not player.sprite.is_playing():
+	# Swing finished by time.
+	if _elapsed >= float(COMBO[_index]["dur"]):
 		if _buffered and _index < COMBO.size() - 1:
 			_index += 1
 			_buffered = false
-			player.set_hitbox_active(false)
-			_hit_live = false
 			_start_swing()
 			return ""
-		# Combo over.
 		if not player.is_on_floor():
 			return "fall"
 		return "run" if absf(player.input_x) > 0.01 else "idle"
@@ -71,19 +68,18 @@ func physics_update(delta: float) -> String:
 
 func _start_swing() -> void:
 	var step: Dictionary = COMBO[_index]
+	_elapsed = 0.0
+	_hit_live = false
+	player.set_hitbox_active(false)
 	player.sprite.play(step["anim"])
 	player.sprite.frame = 0
-	# Configure this swing's hitbox payload.
 	player.hitbox.damage = step["damage"]
 	player.hitbox.knockback_force = step["knockback"]
 	player.hitbox.knockback_up = step["up"]
-	# Commit a forward lunge — only on the ground so air swings stay put.
 	if player.is_on_floor():
 		player.velocity.x = float(player.facing) * step["lunge"]
 
 	player.play_sfx("swing", -9.0)
-
-	# Slash trail VFX (gold + bigger on the finisher).
 	var big := _index == COMBO.size() - 1
 	var color := SlashEffect.HEAVY_COLOR if big else SlashEffect.LIGHT_COLOR
 	var at := player.global_position + Vector2(float(player.facing) * 14.0, -16.0)
@@ -92,8 +88,7 @@ func _start_swing() -> void:
 
 func _update_hitbox_window() -> void:
 	var step: Dictionary = COMBO[_index]
-	var f := player.sprite.frame
-	var want := f >= int(step["active"][0]) and f <= int(step["active"][1])
+	var want := _elapsed >= float(step["active"][0]) and _elapsed <= float(step["active"][1])
 	if want and not _hit_live:
 		player.set_hitbox_active(true)
 		_hit_live = true

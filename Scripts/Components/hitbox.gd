@@ -23,9 +23,18 @@ func _ready() -> void:
 	set_active(false)
 
 
-## Enable/disable the hitbox for the duration of an active attack frame window.
+## Enable/disable the hitbox for the active window of an attack.
+##
+## We toggle the COLLISION SHAPE, not just `monitorable`: flipping monitorable on
+## a stationary, already-overlapping area does NOT make the physics server
+## register the overlap (no enter event fires), so a standing melee swing would
+## never connect. Enabling the shape re-adds it to the broadphase, which fires
+## the overlap and lets the target's Hurtbox detect it.
 func set_active(active: bool) -> void:
 	monitorable = active
+	var shape := get_node_or_null("CollisionShape2D")
+	if shape != null:
+		shape.set_deferred("disabled", not active)
 
 
 ## Roll this swing's damage, applying a crit if it procs.
