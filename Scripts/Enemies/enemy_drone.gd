@@ -31,7 +31,8 @@ const LOW_HEIGHT := 22.0
 ## Hover height above the player's standing position once airborne.
 @export var hover_height: float = 56.0
 @export var approach_gain: float = 5.0
-@export var max_move_speed: float = 130.0
+## Capped below the player's run speed so it can't endlessly outrun a chase.
+@export var max_move_speed: float = 100.0
 
 @export_group("Detection")
 @export var detect_radius: float = 250.0
@@ -58,9 +59,10 @@ var _patrol_dir: int = 1
 var _stun_timer: float = 0.0
 var _fire_timer: float = 0.0
 var _player_ground_y: float = 0.0
-## Per-drone horizontal standoff + height offset so multiple drones spread out
-## around the player instead of stacking on the same point.
-var _standoff: float = 40.0
+## Per-drone standoffs: small in the low phase (melee range — you CAN hit it),
+## larger in the airborne phase (ranged duel). Height jitter spreads them out.
+var _melee_standoff: float = 18.0
+var _range_standoff: float = 44.0
 var _extra_height: float = 0.0
 
 
@@ -70,8 +72,9 @@ func _ready() -> void:
 	_player_ground_y = global_position.y
 	_bob_t = randf() * TAU
 	_fire_timer = randf() * fire_cooldown
-	_standoff = 20.0 + randf() * 14.0   # within slash reach, varied per drone
-	_extra_height = randf() * 18.0       # ...and its own altitude
+	_melee_standoff = 14.0 + randf() * 8.0    # within slash reach (low phase)
+	_range_standoff = 36.0 + randf() * 22.0   # ranged duel distance (airborne)
+	_extra_height = randf() * 16.0            # spread altitudes
 	_acquire_player()
 	hurtbox.hurt.connect(_on_hurt)
 	health.died.connect(_on_died)
@@ -119,7 +122,7 @@ func _phase_low() -> void:
 	# Always follow the player, hovering BESIDE them at body height so a slash
 	# connects — never overhead/inside them.
 	if is_instance_valid(_player):
-		_hover_to(_beside(LOW_HEIGHT))
+		_hover_to(_beside(LOW_HEIGHT, _melee_standoff))  # within melee reach
 	else:
 		_acquire_player()
 		_patrol()
@@ -130,7 +133,7 @@ func _phase_high(delta: float) -> void:
 		_acquire_player()
 		_patrol()
 		return
-	_hover_to(_beside(hover_height))
+	_hover_to(_beside(hover_height + _extra_height, _range_standoff))  # keep ranged distance
 	_fire_timer -= delta
 	if _fire_timer <= 0.0:
 		_fire()
@@ -141,12 +144,12 @@ func _phase_high(delta: float) -> void:
 ## side it's currently on, at body height. This keeps it out of the player's
 ## body (no overlap) and out of other drones (varied standoff), while sitting in
 ## the path of a horizontal slash when the player turns to face it.
-func _beside(height: float) -> Vector2:
+func _beside(height: float, standoff: float) -> Vector2:
 	var side := signf(global_position.x - _player.global_position.x)
 	if side == 0.0:
 		side = 1.0
-	var tx := _player.global_position.x + side * _standoff
-	return Vector2(tx, _player_ground_y - height - _extra_height)
+	var tx := _player.global_position.x + side * standoff
+	return Vector2(tx, _player_ground_y - height)
 
 
 ## Ease toward a hover point (slows as it arrives) + a faint bob.

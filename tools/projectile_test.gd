@@ -19,7 +19,9 @@ func _physics_process(_delta: float) -> bool:
 	if _frames == 1:
 		var player := _level.get_node("Player") as Player
 		var drone := _level.get_node("SentinelDrone0") as Node2D
-		player.global_position = drone.global_position + Vector2(0, 30)
+		# Open start plaza (clear line of fire — no platforms between them).
+		player.global_position = Vector2(90, 182)
+		drone.global_position = Vector2(90, 146)
 		_player_hp = player.get_node("Health") as HealthComponent
 		_start_hp = _player_hp.current
 		# Wound the drone so it takes flight, then it should start shooting.
