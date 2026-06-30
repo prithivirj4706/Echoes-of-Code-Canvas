@@ -180,131 +180,131 @@ size = Vector2(86, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hmmae"]
 size = Vector2(80, 14)
 
-[node name="TestArena" type="Node2D" unique_id=1545615089]
+[node name="TestArena" type="Node2D" unique_id=470664234]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1318500303]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=785103129]
 
-[node name="@ParallaxLayer@2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=344577820]
+[node name="@ParallaxLayer@2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1966063937]
 motion_scale = Vector2(0.12, 1)
 motion_mirroring = Vector2(128, 0)
 
-[node name="@Sprite2D@3" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@2" unique_id=1994268389]
+[node name="@Sprite2D@3" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@2" unique_id=1353084824]
 position = Vector2(0, -30)
 texture = ExtResource("1_sllvg")
 centered = false
 
-[node name="@ParallaxLayer@4" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1873602001]
+[node name="@ParallaxLayer@4" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1011729331]
 motion_scale = Vector2(0.35, 1)
 motion_mirroring = Vector2(144, 0)
 
-[node name="@Sprite2D@5" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@4" unique_id=1903263333]
+[node name="@Sprite2D@5" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@4" unique_id=73360855]
 position = Vector2(0, 60)
 texture = ExtResource("2_vc7qo")
 centered = false
 
-[node name="@ParallaxLayer@6" type="ParallaxLayer" parent="ParallaxBackground" unique_id=510871445]
+[node name="@ParallaxLayer@6" type="ParallaxLayer" parent="ParallaxBackground" unique_id=311897528]
 motion_scale = Vector2(0.62, 1)
 motion_mirroring = Vector2(493, 0)
 
-[node name="@Sprite2D@7" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@6" unique_id=1163459287]
+[node name="@Sprite2D@7" type="Sprite2D" parent="ParallaxBackground/@ParallaxLayer@6" unique_id=61246649]
 position = Vector2(0, 40)
 texture = ExtResource("3_5nj6e")
 centered = false
 
-[node name="Decor" type="Node2D" parent="." unique_id=1084305607]
+[node name="Decor" type="Node2D" parent="." unique_id=328614993]
 
-[node name="@Sprite2D@8" type="Sprite2D" parent="Decor" unique_id=2036968381]
+[node name="@Sprite2D@8" type="Sprite2D" parent="Decor" unique_id=64521419]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -4
 position = Vector2(270, 178.16)
 scale = Vector2(0.42, 0.42)
 texture = ExtResource("4_o5xbk")
 
-[node name="@Sprite2D@9" type="Sprite2D" parent="Decor" unique_id=1175189013]
+[node name="@Sprite2D@9" type="Sprite2D" parent="Decor" unique_id=1372148149]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -4
 position = Vector2(720, 183.5)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("5_5372d")
 
-[node name="@Sprite2D@10" type="Sprite2D" parent="Decor" unique_id=576491680]
+[node name="@Sprite2D@10" type="Sprite2D" parent="Decor" unique_id=1150498129]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -4
 position = Vector2(150, 181.7)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("6_nuthd")
 
-[node name="@Sprite2D@11" type="Sprite2D" parent="Decor" unique_id=1545618465]
+[node name="@Sprite2D@11" type="Sprite2D" parent="Decor" unique_id=585965827]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -4
 position = Vector2(1000, 182)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_v086v")
 
-[node name="@Sprite2D@12" type="Sprite2D" parent="Decor" unique_id=1623186996]
+[node name="@Sprite2D@12" type="Sprite2D" parent="Decor" unique_id=741811049]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -3
 position = Vector2(30, 152)
 texture = ExtResource("8_x8iln")
 
-[node name="@Sprite2D@13" type="Sprite2D" parent="Decor" unique_id=1688502243]
+[node name="@Sprite2D@13" type="Sprite2D" parent="Decor" unique_id=1532884880]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -3
 position = Vector2(545, 152)
 texture = ExtResource("8_x8iln")
 
-[node name="@Sprite2D@14" type="Sprite2D" parent="Decor" unique_id=1825652969]
+[node name="@Sprite2D@14" type="Sprite2D" parent="Decor" unique_id=1112845588]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -3
 position = Vector2(1090, 152)
 texture = ExtResource("8_x8iln")
 
-[node name="@AnimatedSprite2D@15" type="AnimatedSprite2D" parent="Decor" unique_id=1429602379]
+[node name="@AnimatedSprite2D@15" type="AnimatedSprite2D" parent="Decor" unique_id=765617653]
 z_index = -3
 position = Vector2(90, 176)
 sprite_frames = SubResource("SpriteFrames_5pau6")
 animation = &"loop"
 autoplay = "loop"
 
-[node name="@AnimatedSprite2D@16" type="AnimatedSprite2D" parent="Decor" unique_id=928198605]
+[node name="@AnimatedSprite2D@16" type="AnimatedSprite2D" parent="Decor" unique_id=621307457]
 z_index = -3
 position = Vector2(470, 176)
 sprite_frames = SubResource("SpriteFrames_th8jl")
 animation = &"loop"
 autoplay = "loop"
 
-[node name="@AnimatedSprite2D@17" type="AnimatedSprite2D" parent="Decor" unique_id=1450936475]
+[node name="@AnimatedSprite2D@17" type="AnimatedSprite2D" parent="Decor" unique_id=1453271617]
 z_index = -3
 position = Vector2(1040, 176.5)
 sprite_frames = SubResource("SpriteFrames_mf3ed")
 animation = &"loop"
 autoplay = "loop"
 
-[node name="@Sprite2D@18" type="Sprite2D" parent="Decor" unique_id=1483380006]
+[node name="@Sprite2D@18" type="Sprite2D" parent="Decor" unique_id=1562468402]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -2
 position = Vector2(644, 64)
 texture = ExtResource("17_hybvn")
 
-[node name="@Sprite2D@19" type="Sprite2D" parent="Decor" unique_id=1110875434]
+[node name="@Sprite2D@19" type="Sprite2D" parent="Decor" unique_id=1348200227]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -2
 position = Vector2(440, 180)
 texture = ExtResource("18_c0ml4")
 
-[node name="@Sprite2D@20" type="Sprite2D" parent="Decor" unique_id=88663584]
+[node name="@Sprite2D@20" type="Sprite2D" parent="Decor" unique_id=1450063665]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -2
 position = Vector2(310, 162)
 texture = ExtResource("19_glafj")
 
-[node name="@Sprite2D@21" type="Sprite2D" parent="Decor" unique_id=474544588]
+[node name="@Sprite2D@21" type="Sprite2D" parent="Decor" unique_id=1586683682]
 modulate = Color(0.92, 0.92, 0.92, 1)
 z_index = -2
 position = Vector2(800, 184)
 texture = ExtResource("20_c688c")
 
-[node name="@AnimatedSprite2D@22" type="AnimatedSprite2D" parent="Decor" unique_id=410010812]
+[node name="@AnimatedSprite2D@22" type="AnimatedSprite2D" parent="Decor" unique_id=39002229]
 modulate = Color(1, 1, 1, 1.4)
 z_index = -2
 position = Vector2(360, 96)
@@ -312,7 +312,7 @@ sprite_frames = SubResource("SpriteFrames_0cuf7")
 animation = &"loop"
 autoplay = "loop"
 
-[node name="@AnimatedSprite2D@23" type="AnimatedSprite2D" parent="Decor" unique_id=371141063]
+[node name="@AnimatedSprite2D@23" type="AnimatedSprite2D" parent="Decor" unique_id=1930200787]
 modulate = Color(1, 1, 1, 1.4)
 z_index = -2
 position = Vector2(910, 92)
@@ -320,7 +320,7 @@ sprite_frames = SubResource("SpriteFrames_0u1e6")
 animation = &"loop"
 autoplay = "loop"
 
-[node name="DataMotes" type="CPUParticles2D" parent="." unique_id=1892936813]
+[node name="DataMotes" type="CPUParticles2D" parent="." unique_id=1316755932]
 z_index = -2
 position = Vector2(540, 215)
 amount = 70
@@ -336,16 +336,16 @@ scale_amount_min = 0.6
 scale_amount_max = 1.4
 color = Color(0.4, 0.85, 1, 0.5)
 
-[node name="Geometry" type="Node2D" parent="." unique_id=1976095043]
+[node name="Geometry" type="Node2D" parent="." unique_id=656103942]
 
-[node name="@StaticBody2D@24" type="StaticBody2D" parent="Geometry" unique_id=149840868]
+[node name="@StaticBody2D@24" type="StaticBody2D" parent="Geometry" unique_id=1417158035]
 position = Vector2(530, 224)
 collision_mask = 0
 
-[node name="@CollisionShape2D@25" type="CollisionShape2D" parent="Geometry/@StaticBody2D@24" unique_id=1841625039]
+[node name="@CollisionShape2D@25" type="CollisionShape2D" parent="Geometry/@StaticBody2D@24" unique_id=304190897]
 shape = SubResource("RectangleShape2D_12nlu")
 
-[node name="@ColorRect@26" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=1820648862]
+[node name="@ColorRect@26" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=1815555635]
 z_index = -1
 offset_left = -590.0
 offset_top = -24.0
@@ -353,49 +353,49 @@ offset_right = 590.0
 offset_bottom = 24.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@27" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=2024094994]
+[node name="@ColorRect@27" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=1673130098]
 offset_left = -590.0
 offset_top = -22.0
 offset_right = 590.0
 offset_bottom = -19.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@28" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=1621876998]
+[node name="@ColorRect@28" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=809136712]
 offset_left = -590.0
 offset_top = -24.0
 offset_right = 590.0
 offset_bottom = -22.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@29" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=329818167]
+[node name="@ColorRect@29" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=535574340]
 offset_left = -590.0
 offset_top = 23.0
 offset_right = 590.0
 offset_bottom = 24.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@30" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=1114163679]
+[node name="@ColorRect@30" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=1328101519]
 offset_left = -590.0
 offset_top = -24.0
 offset_right = -586.0
 offset_bottom = -21.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@31" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=1781048593]
+[node name="@ColorRect@31" type="ColorRect" parent="Geometry/@StaticBody2D@24" unique_id=1086022566]
 offset_left = 586.0
 offset_top = -24.0
 offset_right = 590.0
 offset_bottom = -21.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@32" type="StaticBody2D" parent="Geometry" unique_id=431048299]
+[node name="@StaticBody2D@32" type="StaticBody2D" parent="Geometry" unique_id=1517998693]
 position = Vector2(-56, 110)
 collision_mask = 0
 
-[node name="@CollisionShape2D@33" type="CollisionShape2D" parent="Geometry/@StaticBody2D@32" unique_id=164452412]
+[node name="@CollisionShape2D@33" type="CollisionShape2D" parent="Geometry/@StaticBody2D@32" unique_id=121416141]
 shape = SubResource("RectangleShape2D_ufyer")
 
-[node name="@ColorRect@34" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=1938748795]
+[node name="@ColorRect@34" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=262315221]
 z_index = -1
 offset_left = -16.0
 offset_top = -150.0
@@ -403,49 +403,49 @@ offset_right = 16.0
 offset_bottom = 150.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@35" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=2089651686]
+[node name="@ColorRect@35" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=545985987]
 offset_left = -16.0
 offset_top = -148.0
 offset_right = 16.0
 offset_bottom = -145.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@36" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=2140337340]
+[node name="@ColorRect@36" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=1885984248]
 offset_left = -16.0
 offset_top = -150.0
 offset_right = 16.0
 offset_bottom = -148.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@37" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=1680823629]
+[node name="@ColorRect@37" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=569761208]
 offset_left = -16.0
 offset_top = 149.0
 offset_right = 16.0
 offset_bottom = 150.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@38" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=310915420]
+[node name="@ColorRect@38" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=1803097536]
 offset_left = -16.0
 offset_top = -150.0
 offset_right = -12.0
 offset_bottom = -147.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@39" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=538399836]
+[node name="@ColorRect@39" type="ColorRect" parent="Geometry/@StaticBody2D@32" unique_id=1436532754]
 offset_left = 12.0
 offset_top = -150.0
 offset_right = 16.0
 offset_bottom = -147.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@40" type="StaticBody2D" parent="Geometry" unique_id=1576481945]
+[node name="@StaticBody2D@40" type="StaticBody2D" parent="Geometry" unique_id=393048086]
 position = Vector2(1116, 110)
 collision_mask = 0
 
-[node name="@CollisionShape2D@41" type="CollisionShape2D" parent="Geometry/@StaticBody2D@40" unique_id=1842738975]
+[node name="@CollisionShape2D@41" type="CollisionShape2D" parent="Geometry/@StaticBody2D@40" unique_id=1951029916]
 shape = SubResource("RectangleShape2D_8hcqn")
 
-[node name="@ColorRect@42" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=251732993]
+[node name="@ColorRect@42" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=327623032]
 z_index = -1
 offset_left = -16.0
 offset_top = -150.0
@@ -453,49 +453,49 @@ offset_right = 16.0
 offset_bottom = 150.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@43" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=1514525083]
+[node name="@ColorRect@43" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=1059649054]
 offset_left = -16.0
 offset_top = -148.0
 offset_right = 16.0
 offset_bottom = -145.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@44" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=696306113]
+[node name="@ColorRect@44" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=1860729697]
 offset_left = -16.0
 offset_top = -150.0
 offset_right = 16.0
 offset_bottom = -148.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@45" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=1916552769]
+[node name="@ColorRect@45" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=1994501073]
 offset_left = -16.0
 offset_top = 149.0
 offset_right = 16.0
 offset_bottom = 150.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@46" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=207601045]
+[node name="@ColorRect@46" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=1182134676]
 offset_left = -16.0
 offset_top = -150.0
 offset_right = -12.0
 offset_bottom = -147.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@47" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=1132735342]
+[node name="@ColorRect@47" type="ColorRect" parent="Geometry/@StaticBody2D@40" unique_id=429056755]
 offset_left = 12.0
 offset_top = -150.0
 offset_right = 16.0
 offset_bottom = -147.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@48" type="StaticBody2D" parent="Geometry" unique_id=359070897]
+[node name="@StaticBody2D@48" type="StaticBody2D" parent="Geometry" unique_id=589002298]
 position = Vector2(180, 176)
 collision_mask = 0
 
-[node name="@CollisionShape2D@49" type="CollisionShape2D" parent="Geometry/@StaticBody2D@48" unique_id=1115313291]
+[node name="@CollisionShape2D@49" type="CollisionShape2D" parent="Geometry/@StaticBody2D@48" unique_id=405479387]
 shape = SubResource("RectangleShape2D_051p1")
 
-[node name="@ColorRect@50" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=2052374176]
+[node name="@ColorRect@50" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=1944248853]
 z_index = -1
 offset_left = -35.0
 offset_top = -8.0
@@ -503,49 +503,49 @@ offset_right = 35.0
 offset_bottom = 8.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@51" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=1448717597]
+[node name="@ColorRect@51" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=1937749943]
 offset_left = -35.0
 offset_top = -6.0
 offset_right = 35.0
 offset_bottom = -3.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@52" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=1432398322]
+[node name="@ColorRect@52" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=401037641]
 offset_left = -35.0
 offset_top = -8.0
 offset_right = 35.0
 offset_bottom = -6.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@53" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=813120495]
+[node name="@ColorRect@53" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=1481288237]
 offset_left = -35.0
 offset_top = 7.0
 offset_right = 35.0
 offset_bottom = 8.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@54" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=61267765]
+[node name="@ColorRect@54" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=1681728022]
 offset_left = -35.0
 offset_top = -8.0
 offset_right = -31.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@55" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=460153345]
+[node name="@ColorRect@55" type="ColorRect" parent="Geometry/@StaticBody2D@48" unique_id=1666172031]
 offset_left = 31.0
 offset_top = -8.0
 offset_right = 35.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@56" type="StaticBody2D" parent="Geometry" unique_id=1785478300]
+[node name="@StaticBody2D@56" type="StaticBody2D" parent="Geometry" unique_id=2092693272]
 position = Vector2(310, 140)
 collision_mask = 0
 
-[node name="@CollisionShape2D@57" type="CollisionShape2D" parent="Geometry/@StaticBody2D@56" unique_id=1827281297]
+[node name="@CollisionShape2D@57" type="CollisionShape2D" parent="Geometry/@StaticBody2D@56" unique_id=786691651]
 shape = SubResource("RectangleShape2D_kaujw")
 
-[node name="@ColorRect@58" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=2113806778]
+[node name="@ColorRect@58" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=282884247]
 z_index = -1
 offset_left = -40.0
 offset_top = -7.0
@@ -553,51 +553,51 @@ offset_right = 40.0
 offset_bottom = 7.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@59" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=1646447210]
+[node name="@ColorRect@59" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=683895652]
 offset_left = -40.0
 offset_top = -5.0
 offset_right = 40.0
 offset_bottom = -2.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@60" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=2118449095]
+[node name="@ColorRect@60" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=1888476771]
 offset_left = -40.0
 offset_top = -7.0
 offset_right = 40.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@61" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=1103337556]
+[node name="@ColorRect@61" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=1926566255]
 offset_left = -40.0
 offset_top = 6.0
 offset_right = 40.0
 offset_bottom = 7.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@62" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=1426859712]
+[node name="@ColorRect@62" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=1867880370]
 offset_left = -40.0
 offset_top = -7.0
 offset_right = -36.0
 offset_bottom = -4.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@63" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=454260430]
+[node name="@ColorRect@63" type="ColorRect" parent="Geometry/@StaticBody2D@56" unique_id=516406295]
 offset_left = 36.0
 offset_top = -7.0
 offset_right = 40.0
 offset_bottom = -4.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@64" type="StaticBody2D" parent="Geometry" unique_id=855007726]
+[node name="@StaticBody2D@64" type="StaticBody2D" parent="Geometry" unique_id=1209005842]
 position = Vector2(250, 116)
 collision_layer = 256
 collision_mask = 0
 
-[node name="@CollisionShape2D@65" type="CollisionShape2D" parent="Geometry/@StaticBody2D@64" unique_id=1647629481]
+[node name="@CollisionShape2D@65" type="CollisionShape2D" parent="Geometry/@StaticBody2D@64" unique_id=855767737]
 shape = SubResource("RectangleShape2D_q878j")
 one_way_collision = true
 
-[node name="@ColorRect@66" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=283149003]
+[node name="@ColorRect@66" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=378847851]
 z_index = -1
 offset_left = -40.0
 offset_top = -6.0
@@ -605,49 +605,49 @@ offset_right = 40.0
 offset_bottom = 6.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@67" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=6701528]
+[node name="@ColorRect@67" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=1019713457]
 offset_left = -40.0
 offset_top = -4.0
 offset_right = 40.0
 offset_bottom = -1.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@68" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=2056385916]
+[node name="@ColorRect@68" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=1834709830]
 offset_left = -40.0
 offset_top = -6.0
 offset_right = 40.0
 offset_bottom = -4.0
 color = Color(0.62, 0.45, 1, 1)
 
-[node name="@ColorRect@69" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=1117210126]
+[node name="@ColorRect@69" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=1641311486]
 offset_left = -40.0
 offset_top = 5.0
 offset_right = 40.0
 offset_bottom = 6.0
 color = Color(0.62, 0.45, 1, 0.3)
 
-[node name="@ColorRect@70" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=125059780]
+[node name="@ColorRect@70" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=840632095]
 offset_left = -40.0
 offset_top = -6.0
 offset_right = -36.0
 offset_bottom = -3.0
 color = Color(0.62, 0.45, 1, 1)
 
-[node name="@ColorRect@71" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=579710198]
+[node name="@ColorRect@71" type="ColorRect" parent="Geometry/@StaticBody2D@64" unique_id=2109620426]
 offset_left = 36.0
 offset_top = -6.0
 offset_right = 40.0
 offset_bottom = -3.0
 color = Color(0.62, 0.45, 1, 1)
 
-[node name="@StaticBody2D@72" type="StaticBody2D" parent="Geometry" unique_id=378063844]
+[node name="@StaticBody2D@72" type="StaticBody2D" parent="Geometry" unique_id=2104653183]
 position = Vector2(440, 150)
 collision_mask = 0
 
-[node name="@CollisionShape2D@73" type="CollisionShape2D" parent="Geometry/@StaticBody2D@72" unique_id=321842044]
+[node name="@CollisionShape2D@73" type="CollisionShape2D" parent="Geometry/@StaticBody2D@72" unique_id=378577023]
 shape = SubResource("RectangleShape2D_2m886")
 
-[node name="@ColorRect@74" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=1596198516]
+[node name="@ColorRect@74" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=969645117]
 z_index = -1
 offset_left = -48.0
 offset_top = -8.0
@@ -655,49 +655,49 @@ offset_right = 48.0
 offset_bottom = 8.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@75" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=2024605117]
+[node name="@ColorRect@75" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=1475327466]
 offset_left = -48.0
 offset_top = -6.0
 offset_right = 48.0
 offset_bottom = -3.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@76" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=1936694584]
+[node name="@ColorRect@76" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=434893648]
 offset_left = -48.0
 offset_top = -8.0
 offset_right = 48.0
 offset_bottom = -6.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@77" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=1899405142]
+[node name="@ColorRect@77" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=1240089495]
 offset_left = -48.0
 offset_top = 7.0
 offset_right = 48.0
 offset_bottom = 8.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@78" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=1978171341]
+[node name="@ColorRect@78" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=1109829358]
 offset_left = -48.0
 offset_top = -8.0
 offset_right = -44.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@79" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=161197425]
+[node name="@ColorRect@79" type="ColorRect" parent="Geometry/@StaticBody2D@72" unique_id=1377065813]
 offset_left = 44.0
 offset_top = -8.0
 offset_right = 48.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@80" type="StaticBody2D" parent="Geometry" unique_id=894412198]
+[node name="@StaticBody2D@80" type="StaticBody2D" parent="Geometry" unique_id=1201782076]
 position = Vector2(600, 120)
 collision_mask = 0
 
-[node name="@CollisionShape2D@81" type="CollisionShape2D" parent="Geometry/@StaticBody2D@80" unique_id=411324905]
+[node name="@CollisionShape2D@81" type="CollisionShape2D" parent="Geometry/@StaticBody2D@80" unique_id=1076196345]
 shape = SubResource("RectangleShape2D_2phgb")
 
-[node name="@ColorRect@82" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=1609048560]
+[node name="@ColorRect@82" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=369787310]
 z_index = -1
 offset_left = -12.0
 offset_top = -90.0
@@ -705,49 +705,49 @@ offset_right = 12.0
 offset_bottom = 90.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@83" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=548459254]
+[node name="@ColorRect@83" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=1011695180]
 offset_left = -12.0
 offset_top = -88.0
 offset_right = 12.0
 offset_bottom = -85.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@84" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=87573041]
+[node name="@ColorRect@84" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=1037645765]
 offset_left = -12.0
 offset_top = -90.0
 offset_right = 12.0
 offset_bottom = -88.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@85" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=851755434]
+[node name="@ColorRect@85" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=928495425]
 offset_left = -12.0
 offset_top = 89.0
 offset_right = 12.0
 offset_bottom = 90.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@86" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=253857031]
+[node name="@ColorRect@86" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=383415750]
 offset_left = -12.0
 offset_top = -90.0
 offset_right = -8.0
 offset_bottom = -87.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@87" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=252233854]
+[node name="@ColorRect@87" type="ColorRect" parent="Geometry/@StaticBody2D@80" unique_id=1913538839]
 offset_left = 8.0
 offset_top = -90.0
 offset_right = 12.0
 offset_bottom = -87.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@88" type="StaticBody2D" parent="Geometry" unique_id=81350262]
+[node name="@StaticBody2D@88" type="StaticBody2D" parent="Geometry" unique_id=2010595135]
 position = Vector2(688, 120)
 collision_mask = 0
 
-[node name="@CollisionShape2D@89" type="CollisionShape2D" parent="Geometry/@StaticBody2D@88" unique_id=767461856]
+[node name="@CollisionShape2D@89" type="CollisionShape2D" parent="Geometry/@StaticBody2D@88" unique_id=590599714]
 shape = SubResource("RectangleShape2D_wps1g")
 
-[node name="@ColorRect@90" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=927555711]
+[node name="@ColorRect@90" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=2110178613]
 z_index = -1
 offset_left = -12.0
 offset_top = -90.0
@@ -755,49 +755,49 @@ offset_right = 12.0
 offset_bottom = 90.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@91" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=1654189311]
+[node name="@ColorRect@91" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=1445327392]
 offset_left = -12.0
 offset_top = -88.0
 offset_right = 12.0
 offset_bottom = -85.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@92" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=2094626052]
+[node name="@ColorRect@92" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=587567286]
 offset_left = -12.0
 offset_top = -90.0
 offset_right = 12.0
 offset_bottom = -88.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@93" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=549491037]
+[node name="@ColorRect@93" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=515839295]
 offset_left = -12.0
 offset_top = 89.0
 offset_right = 12.0
 offset_bottom = 90.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@94" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=540652999]
+[node name="@ColorRect@94" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=512477139]
 offset_left = -12.0
 offset_top = -90.0
 offset_right = -8.0
 offset_bottom = -87.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@95" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=2141183916]
+[node name="@ColorRect@95" type="ColorRect" parent="Geometry/@StaticBody2D@88" unique_id=1342186215]
 offset_left = 8.0
 offset_top = -90.0
 offset_right = 12.0
 offset_bottom = -87.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@96" type="StaticBody2D" parent="Geometry" unique_id=614223546]
+[node name="@StaticBody2D@96" type="StaticBody2D" parent="Geometry" unique_id=241594269]
 position = Vector2(644, 40)
 collision_mask = 0
 
-[node name="@CollisionShape2D@97" type="CollisionShape2D" parent="Geometry/@StaticBody2D@96" unique_id=1283802187]
+[node name="@CollisionShape2D@97" type="CollisionShape2D" parent="Geometry/@StaticBody2D@96" unique_id=1358298894]
 shape = SubResource("RectangleShape2D_2onpk")
 
-[node name="@ColorRect@98" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=1965110496]
+[node name="@ColorRect@98" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=218451102]
 z_index = -1
 offset_left = -48.0
 offset_top = -7.0
@@ -805,49 +805,49 @@ offset_right = 48.0
 offset_bottom = 7.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@99" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=2038655768]
+[node name="@ColorRect@99" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=1973486888]
 offset_left = -48.0
 offset_top = -5.0
 offset_right = 48.0
 offset_bottom = -2.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@100" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=547771751]
+[node name="@ColorRect@100" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=771427817]
 offset_left = -48.0
 offset_top = -7.0
 offset_right = 48.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@101" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=21988214]
+[node name="@ColorRect@101" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=772666724]
 offset_left = -48.0
 offset_top = 6.0
 offset_right = 48.0
 offset_bottom = 7.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@102" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=1907780707]
+[node name="@ColorRect@102" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=260312902]
 offset_left = -48.0
 offset_top = -7.0
 offset_right = -44.0
 offset_bottom = -4.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@103" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=670775992]
+[node name="@ColorRect@103" type="ColorRect" parent="Geometry/@StaticBody2D@96" unique_id=393413617]
 offset_left = 44.0
 offset_top = -7.0
 offset_right = 48.0
 offset_bottom = -4.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@104" type="StaticBody2D" parent="Geometry" unique_id=2000579016]
+[node name="@StaticBody2D@104" type="StaticBody2D" parent="Geometry" unique_id=1181800711]
 position = Vector2(800, 162)
 collision_mask = 0
 
-[node name="@CollisionShape2D@105" type="CollisionShape2D" parent="Geometry/@StaticBody2D@104" unique_id=262541484]
+[node name="@CollisionShape2D@105" type="CollisionShape2D" parent="Geometry/@StaticBody2D@104" unique_id=1887812202]
 shape = SubResource("RectangleShape2D_32ug4")
 
-[node name="@ColorRect@106" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=1643162712]
+[node name="@ColorRect@106" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=1253843461]
 z_index = -1
 offset_left = -43.0
 offset_top = -8.0
@@ -855,49 +855,49 @@ offset_right = 43.0
 offset_bottom = 8.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@107" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=999457427]
+[node name="@ColorRect@107" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=1702479904]
 offset_left = -43.0
 offset_top = -6.0
 offset_right = 43.0
 offset_bottom = -3.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@108" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=1405108424]
+[node name="@ColorRect@108" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=888613782]
 offset_left = -43.0
 offset_top = -8.0
 offset_right = 43.0
 offset_bottom = -6.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@109" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=949518213]
+[node name="@ColorRect@109" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=1172592453]
 offset_left = -43.0
 offset_top = 7.0
 offset_right = 43.0
 offset_bottom = 8.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@110" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=2021616113]
+[node name="@ColorRect@110" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=1209781048]
 offset_left = -43.0
 offset_top = -8.0
 offset_right = -39.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@111" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=2130330336]
+[node name="@ColorRect@111" type="ColorRect" parent="Geometry/@StaticBody2D@104" unique_id=996947682]
 offset_left = 39.0
 offset_top = -8.0
 offset_right = 43.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@StaticBody2D@112" type="StaticBody2D" parent="Geometry" unique_id=182920477]
+[node name="@StaticBody2D@112" type="StaticBody2D" parent="Geometry" unique_id=1284357829]
 position = Vector2(910, 126)
 collision_mask = 0
 
-[node name="@CollisionShape2D@113" type="CollisionShape2D" parent="Geometry/@StaticBody2D@112" unique_id=1662572322]
+[node name="@CollisionShape2D@113" type="CollisionShape2D" parent="Geometry/@StaticBody2D@112" unique_id=1394666582]
 shape = SubResource("RectangleShape2D_hmmae")
 
-[node name="@ColorRect@114" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=570934062]
+[node name="@ColorRect@114" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=458527300]
 z_index = -1
 offset_left = -40.0
 offset_top = -7.0
@@ -905,42 +905,42 @@ offset_right = 40.0
 offset_bottom = 7.0
 color = Color(0.082, 0.094, 0.18, 1)
 
-[node name="@ColorRect@115" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=349050249]
+[node name="@ColorRect@115" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=1898597310]
 offset_left = -40.0
 offset_top = -5.0
 offset_right = 40.0
 offset_bottom = -2.0
 color = Color(0.132, 0.154, 0.27, 1)
 
-[node name="@ColorRect@116" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=520522122]
+[node name="@ColorRect@116" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=354214164]
 offset_left = -40.0
 offset_top = -7.0
 offset_right = 40.0
 offset_bottom = -5.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@117" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=56397039]
+[node name="@ColorRect@117" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=956995738]
 offset_left = -40.0
 offset_top = 6.0
 offset_right = 40.0
 offset_bottom = 7.0
 color = Color(0.28, 0.85, 1, 0.3)
 
-[node name="@ColorRect@118" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=986836738]
+[node name="@ColorRect@118" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=265613086]
 offset_left = -40.0
 offset_top = -7.0
 offset_right = -36.0
 offset_bottom = -4.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="@ColorRect@119" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=421672387]
+[node name="@ColorRect@119" type="ColorRect" parent="Geometry/@StaticBody2D@112" unique_id=2141531272]
 offset_left = 36.0
 offset_top = -7.0
 offset_right = 40.0
 offset_bottom = -4.0
 color = Color(0.28, 0.85, 1, 1)
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=291500585 instance=ExtResource("25_mn3au")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1845836001 instance=ExtResource("25_mn3au")]
 position = Vector2(60, 182)
 collision_layer = 2
 collision_mask = 257
@@ -949,52 +949,52 @@ floor_snap_length = 6.0
 script = ExtResource("26_41orv")
 config = ExtResource("27_8bqyl")
 
-[node name="SentinelDrone0" type="CharacterBody2D" parent="." unique_id=1422365103 instance=ExtResource("28_ml2vv")]
+[node name="SentinelDrone0" type="CharacterBody2D" parent="." unique_id=1228656874 instance=ExtResource("28_ml2vv")]
 position = Vector2(360, 150)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("29_85djk")
 
-[node name="SentinelDrone1" type="CharacterBody2D" parent="." unique_id=1223454063 instance=ExtResource("28_ml2vv")]
+[node name="SentinelDrone1" type="CharacterBody2D" parent="." unique_id=62271369 instance=ExtResource("28_ml2vv")]
 position = Vector2(740, 130)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("29_85djk")
 
-[node name="SentinelDrone2" type="CharacterBody2D" parent="." unique_id=1012143749 instance=ExtResource("28_ml2vv")]
+[node name="SentinelDrone2" type="CharacterBody2D" parent="." unique_id=1460576518 instance=ExtResource("28_ml2vv")]
 position = Vector2(1050, 150)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("29_85djk")
 
-[node name="TrainingDummy0" type="CharacterBody2D" parent="." unique_id=228256793 instance=ExtResource("30_ifbu2")]
+[node name="TrainingDummy0" type="CharacterBody2D" parent="." unique_id=113651343 instance=ExtResource("30_ifbu2")]
 position = Vector2(470, 199)
 collision_layer = 4
 script = ExtResource("31_v6mcq")
 
-[node name="TrainingDummy1" type="CharacterBody2D" parent="." unique_id=703396573 instance=ExtResource("30_ifbu2")]
+[node name="TrainingDummy1" type="CharacterBody2D" parent="." unique_id=1564003712 instance=ExtResource("30_ifbu2")]
 position = Vector2(644, 24)
 collision_layer = 4
 script = ExtResource("31_v6mcq")
 
-[node name="EchoFragment" type="Area2D" parent="." unique_id=600367236 instance=ExtResource("32_c53xw")]
+[node name="EchoFragment" type="Area2D" parent="." unique_id=898181277 instance=ExtResource("32_c53xw")]
 position = Vector2(250, 100)
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("33_6gebc")
 
-[node name="@Area2D@120" type="Area2D" parent="." unique_id=692408794 instance=ExtResource("32_c53xw")]
+[node name="@Area2D@120" type="Area2D" parent="." unique_id=1342839731 instance=ExtResource("32_c53xw")]
 position = Vector2(644, 26)
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("33_6gebc")
 
-[node name="HackDoor" type="StaticBody2D" parent="." unique_id=1039253656 instance=ExtResource("34_6lcxp")]
+[node name="HackDoor" type="StaticBody2D" parent="." unique_id=455430184 instance=ExtResource("34_6lcxp")]
 position = Vector2(1004, 177)
 collision_mask = 0
 script = ExtResource("35_nuiga")
 
-[node name="HackTerminal" type="Area2D" parent="." unique_id=1891873865 instance=ExtResource("36_s4bva")]
+[node name="HackTerminal" type="Area2D" parent="." unique_id=703530973 instance=ExtResource("36_s4bva")]
 position = Vector2(960, 200)
 collision_layer = 128
 collision_mask = 0
@@ -1003,15 +1003,15 @@ script = ExtResource("37_ufm1j")
 target_path = NodePath("../HackDoor")
 prompt_text = "[E] HACK"
 
-[node name="@Area2D@121" type="Area2D" parent="." unique_id=809340257 instance=ExtResource("32_c53xw")]
+[node name="@Area2D@121" type="Area2D" parent="." unique_id=2062353729 instance=ExtResource("32_c53xw")]
 position = Vector2(1060, 186)
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("33_6gebc")
 
-[node name="Tips" type="CanvasLayer" parent="." unique_id=199872061]
+[node name="Tips" type="CanvasLayer" parent="." unique_id=1859772969]
 
-[node name="Controls" type="Label" parent="Tips" unique_id=1511666325]
+[node name="Controls" type="Label" parent="Tips" unique_id=1929943823]
 offset_left = 8.0
 offset_top = 250.0
 offset_right = 8.0
@@ -1019,17 +1019,17 @@ offset_bottom = 250.0
 theme_override_font_sizes/font_size = 7
 text = "A/D move  •  Space jump  •  Shift dash  •  J attack  •  E hack  •  Esc pause"
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=358859107 instance=ExtResource("38_11mhm")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1779674611 instance=ExtResource("38_11mhm")]
 layer = 5
 script = ExtResource("39_na3no")
 
-[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=74271177 instance=ExtResource("40_pq7hq")]
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=711638879 instance=ExtResource("40_pq7hq")]
 process_mode = 3
 layer = 20
 script = ExtResource("41_txupj")
 
-[node name="Rain" type="CanvasLayer" parent="." unique_id=1363149842 instance=ExtResource("42_jdddw")]
+[node name="Rain" type="CanvasLayer" parent="." unique_id=2060011386 instance=ExtResource("42_jdddw")]
 layer = 2
 
-[node name="ScreenFX" type="CanvasLayer" parent="." unique_id=691843439 instance=ExtResource("43_yrtpq")]
+[node name="ScreenFX" type="CanvasLayer" parent="." unique_id=1080056633 instance=ExtResource("43_yrtpq")]
 layer = 3

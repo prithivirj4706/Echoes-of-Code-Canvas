@@ -16,9 +16,9 @@ extends CharacterBody2D
 enum Phase { LOW, HIGH, DEAD }
 
 const PROJECTILE := preload("res://Scenes/Effects/EnemyProjectile.tscn")
-## Hover height (above the player's standing height) for the dormant low phase —
-## tuned so a standing attack reaches it.
-const HOVER_LOW := 44.0
+## Body height (above the player's feet) the drone hovers at in the low phase —
+## roughly chest height so a horizontal slash connects.
+const LOW_HEIGHT := 22.0
 
 @export_group("Phase")
 @export_range(0.0, 1.0) var float_trigger: float = 0.6
@@ -58,6 +58,10 @@ var _patrol_dir: int = 1
 var _stun_timer: float = 0.0
 var _fire_timer: float = 0.0
 var _player_ground_y: float = 0.0
+## Per-drone horizontal standoff + height offset so multiple drones spread out
+## around the player instead of stacking on the same point.
+var _standoff: float = 40.0
+var _extra_height: float = 0.0
 
 
 func _ready() -> void:
@@ -66,6 +70,8 @@ func _ready() -> void:
 	_player_ground_y = global_position.y
 	_bob_t = randf() * TAU
 	_fire_timer = randf() * fire_cooldown
+	_standoff = 20.0 + randf() * 14.0   # within slash reach, varied per drone
+	_extra_height = randf() * 18.0       # ...and its own altitude
 	_acquire_player()
 	hurtbox.hurt.connect(_on_hurt)
 	health.died.connect(_on_died)
@@ -91,14 +97,29 @@ func _physics_process(delta: float) -> void:
 			_phase_low()
 		Phase.HIGH:
 			_phase_high(delta)
+	velocity += _separation()  # spread drones apart so they never stack
 	move_and_slide()
 	_face()
 
 
+## Push away from nearby drones so multiple enemies don't pile on one point.
+func _separation() -> Vector2:
+	var push := Vector2.ZERO
+	for other in get_tree().get_nodes_in_group("enemies"):
+		if other == self or not is_instance_valid(other):
+			continue
+		var to: Vector2 = global_position - (other as Node2D).global_position
+		var dist := to.length()
+		if dist > 0.01 and dist < 36.0:
+			push += to.normalized() * (36.0 - dist) * 3.0
+	return push
+
+
 func _phase_low() -> void:
-	# Always follow the player (hovering above), never wander randomly.
+	# Always follow the player, hovering BESIDE them at body height so a slash
+	# connects — never overhead/inside them.
 	if is_instance_valid(_player):
-		_hover_to(_follow_target(HOVER_LOW))
+		_hover_to(_beside(LOW_HEIGHT))
 	else:
 		_acquire_player()
 		_patrol()
@@ -109,18 +130,23 @@ func _phase_high(delta: float) -> void:
 		_acquire_player()
 		_patrol()
 		return
-	_hover_to(_follow_target(hover_height))
+	_hover_to(_beside(hover_height))
 	_fire_timer -= delta
 	if _fire_timer <= 0.0:
 		_fire()
 		_fire_timer = fire_cooldown
 
 
-## Hover directly above the player (in the attack column) at the given height.
-## Staying overhead — not off to the side — is what keeps it inside the reach of
-## the player's swing while the height keeps it off the player's body.
-func _follow_target(height: float) -> Vector2:
-	return Vector2(_player.global_position.x, _player_ground_y - height)
+## A hover point BESIDE the player: it holds a per-drone standoff on whichever
+## side it's currently on, at body height. This keeps it out of the player's
+## body (no overlap) and out of other drones (varied standoff), while sitting in
+## the path of a horizontal slash when the player turns to face it.
+func _beside(height: float) -> Vector2:
+	var side := signf(global_position.x - _player.global_position.x)
+	if side == 0.0:
+		side = 1.0
+	var tx := _player.global_position.x + side * _standoff
+	return Vector2(tx, _player_ground_y - height - _extra_height)
 
 
 ## Ease toward a hover point (slows as it arrives) + a faint bob.
