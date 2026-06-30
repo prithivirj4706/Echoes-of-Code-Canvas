@@ -47,6 +47,13 @@ func _initialize() -> void:
 	_build_hud()
 	_build_atmosphere()
 
+	# Level flow: objective banner, win (all fragments) and lose (death) screens.
+	var flow := Node.new()
+	flow.name = "LevelFlow"
+	flow.set_script(load("res://Scripts/World/level_flow.gd"))
+	_root.add_child(flow)
+	_owned(flow)
+
 	var packed := PackedScene.new()
 	var err := packed.pack(_root)
 	if err != OK:

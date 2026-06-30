@@ -34,10 +34,12 @@ keeping melee for the ground. Combat roles locked:
 - Note: pixel-level visual *feel* still benefits from a human; this covers the
   functional/balance bugs that kept round-tripping.
 
-## Phase 3 — Give the slice a shape  (Production 3→7, UI 6→8)
-- Title/main menu → objective → win screen → clean lose/respawn → save fragments
-- HUD objective marker
-- Acceptance: a stranger knows what to do; can win and lose.
+## Phase 3 — Give the slice a shape  (Production 3→7, UI 6→8)  ✅ DONE
+- Main menu (Play/Quit) is the entry scene; "✓ completed" badge persists.
+- Objective: collect all 3 Echo Fragments (one behind the hack-gate) -> WIN.
+- LevelFlow: objective banner on entry, win + game-over screens (Retry/Menu).
+- Death -> Game Over (no auto-respawn); progress saved to user:// (ConfigFile).
+- HUD shows fragments as N / target. flow_test covers the win trigger.
 
 ## Phase 4 — Audio bed  (Audio 4→8)
 - Digital World music loop + rain/city ambience + audio bus mix.

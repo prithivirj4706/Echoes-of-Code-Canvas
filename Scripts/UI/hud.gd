@@ -46,4 +46,6 @@ func _on_energy_changed(current: float, maximum: float) -> void:
 
 
 func _on_fragments_changed(count: int) -> void:
-	fragment_count.text = "x %d" % count
+	var gs := get_node_or_null("/root/GameState")
+	var target: int = gs.target if gs != null else 3
+	fragment_count.text = "%d / %d" % [count, target]
