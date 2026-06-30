@@ -208,12 +208,16 @@ func _on_hurt(info: Dictionary) -> void:
 	var source: Object = info.get("source")
 	var is_ranged := source != null and source.has_method("launch")
 	if _phase == Phase.HIGH and not is_ranged:
-		# Melee bounces off a flying drone — show a deflect so it reads clearly.
-		HitSpark.spawn(get_tree().current_scene, global_position + Vector2(0, -8), false)
-		var au := get_node_or_null("/root/Audio")
-		if au != null:
-			au.play("hack", -14.0)  # soft "tink"
-		return
+		# Flying drone: melee only connects if the player LEAPT up to its level.
+		# A swing from the ground can't reach it — it deflects (use ranged).
+		var grounded: bool = is_instance_valid(_player) and _player.has_method("is_on_floor") and _player.is_on_floor()
+		if grounded:
+			HitSpark.spawn(get_tree().current_scene, global_position + Vector2(0, -8), false)
+			var au := get_node_or_null("/root/Audio")
+			if au != null:
+				au.play("hack", -14.0)  # soft "tink"
+			return
+		# Airborne player — the jump-melee is allowed to land.
 
 	health.take_damage(info["damage"], info["is_crit"])
 	velocity = info["knockback"]
