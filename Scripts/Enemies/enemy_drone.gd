@@ -208,6 +208,11 @@ func _on_hurt(info: Dictionary) -> void:
 	var source: Object = info.get("source")
 	var is_ranged := source != null and source.has_method("launch")
 	if _phase == Phase.HIGH and not is_ranged:
+		# Melee bounces off a flying drone — show a deflect so it reads clearly.
+		HitSpark.spawn(get_tree().current_scene, global_position + Vector2(0, -8), false)
+		var au := get_node_or_null("/root/Audio")
+		if au != null:
+			au.play("hack", -14.0)  # soft "tink"
 		return
 
 	health.take_damage(info["damage"], info["is_crit"])
