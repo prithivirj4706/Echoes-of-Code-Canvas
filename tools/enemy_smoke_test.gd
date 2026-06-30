@@ -27,12 +27,15 @@ func _physics_process(_delta: float) -> bool:
 	if _frames == 40:
 		var moved := _start_pos.distance_to(_drone.global_position)
 		print("Drone moved %.1f px while patrolling" % moved)
-		# Damage it through the hurt pipeline twice -> should die.
+		# Damage it through the hurt pipeline twice -> should die. Use a ranged
+		# source (has launch()) so it lands even after the drone takes flight.
 		var hb := _drone.get_node("Hurtbox")
+		var bolt := (ResourceLoader.load("res://Scenes/Effects/PlayerBolt.tscn") as PackedScene).instantiate()
 		var hp0 := _health.current
-		hb.hurt.emit({"damage": 10, "is_crit": false, "knockback": Vector2(60, -20), "source": null})
+		hb.hurt.emit({"damage": 10, "is_crit": false, "knockback": Vector2(60, -20), "source": bolt})
 		print("After 10 dmg: hp %d -> %d" % [hp0, _health.current])
-		hb.hurt.emit({"damage": 30, "is_crit": true, "knockback": Vector2(60, -20), "source": null})
+		hb.hurt.emit({"damage": 30, "is_crit": true, "knockback": Vector2(60, -20), "source": bolt})
+		bolt.free()
 		var ok := moved > 3.0 and _health.current == 0 and _died
 		print("ENEMY SMOKE TEST: %s" % ("PASS" if ok else "FAIL"))
 		if not ok:

@@ -202,6 +202,14 @@ func _face() -> void:
 func _on_hurt(info: Dictionary) -> void:
 	if _phase == Phase.DEAD:
 		return
+	# Once airborne it can ONLY be hurt by ranged bolts — melee whiffs, forcing
+	# the player to switch to shooting. (Bolts carry a launch() method; melee
+	# hitboxes don't.) Grounded, it takes both.
+	var source: Object = info.get("source")
+	var is_ranged := source != null and source.has_method("launch")
+	if _phase == Phase.HIGH and not is_ranged:
+		return
+
 	health.take_damage(info["damage"], info["is_crit"])
 	velocity = info["knockback"]
 	_stun_timer = stun_time
